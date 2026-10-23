@@ -32,6 +32,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 node --check assets/app.js
+node --test tests/sidebar.test.cjs
 python scripts/build.py --base-path /physical-ai-for-software-engineers
 python scripts/check_site.py --base-path /physical-ai-for-software-engineers
 ```

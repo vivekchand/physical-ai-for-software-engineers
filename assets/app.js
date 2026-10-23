@@ -29,8 +29,34 @@
   window.addEventListener('storage', event => { if(event.key === key) { complete = getProgress(); paintProgress(); } });
   const menu = document.querySelector('.menu-toggle');
   const sidebar = document.querySelector('.sidebar');
+  const lessons = document.querySelector('.lesson-links');
+  const scrollKey = `physical-ai-sidebar:${base}`;
+  function saveSidebarScroll() {
+    if (!lessons.clientHeight) return;
+    try { sessionStorage.setItem(scrollKey, String(lessons.scrollTop)); } catch { /* Navigation still works without storage. */ }
+  }
+  function restoreSidebarScroll() {
+    if (!lessons.clientHeight) return; // The mobile menu must be open before measuring.
+    try {
+      const saved = Number(sessionStorage.getItem(scrollKey));
+      if (Number.isFinite(saved) && saved >= 0) lessons.scrollTop = saved;
+    } catch { /* Keep the active lesson visible even when storage is disabled. */ }
+    const active = lessons.querySelector('[aria-current="page"]');
+    if (active) {
+      const viewport = lessons.getBoundingClientRect();
+      const link = active.getBoundingClientRect();
+      if (link.top < viewport.top) lessons.scrollTop += link.top - viewport.top;
+      else if (link.bottom > viewport.bottom) lessons.scrollTop += link.bottom - viewport.bottom;
+    }
+    saveSidebarScroll();
+  }
+  lessons.addEventListener('scroll', saveSidebarScroll, { passive: true });
+  lessons.addEventListener('click', saveSidebarScroll);
+  window.addEventListener('pagehide', saveSidebarScroll);
+  window.addEventListener('pageshow', restoreSidebarScroll);
+  restoreSidebarScroll();
   function closeMenu(){sidebar.classList.remove('is-open');menu.setAttribute('aria-expanded','false');}
-  menu.addEventListener('click', () => { const open = sidebar.classList.toggle('is-open'); menu.setAttribute('aria-expanded',String(open)); });
+  menu.addEventListener('click', () => { const open = sidebar.classList.toggle('is-open'); menu.setAttribute('aria-expanded',String(open)); if (open) restoreSidebarScroll(); });
   document.addEventListener('click', e => { if(!sidebar.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
   document.addEventListener('keydown', e => {if(e.key === 'Escape') closeMenu();});
 
