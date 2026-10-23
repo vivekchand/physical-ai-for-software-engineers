@@ -111,6 +111,12 @@ def main():
     index = json.loads((root/"search-index.json").read_text())
     if len([entry for entry in index if entry.get("day")]) != 21:
         errors.append("Search does not cover 21 days")
+    search_urls = {entry["url"] for entry in index}
+    for source in Path("content/pages").glob("*.md"):
+        if f"{source.stem}/index.html" not in parsed:
+            errors.append(f"Missing field note: {source.stem}")
+        if f"{base}/{source.stem}/" not in search_urls:
+            errors.append(f"Search does not cover field note: {source.stem}")
     if errors:
         raise SystemExit("\n".join(errors))
     print(f"Verified {len(parsed)} pages, {checked} local references, 21 lessons, and search coverage")

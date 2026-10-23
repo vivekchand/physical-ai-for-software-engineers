@@ -1,4 +1,4 @@
-## Run four small experiments anywhere
+## Run five small experiments anywhere
 
 Clone the repository first using the Setup page. These examples require Python 3.10+ and no third-party packages. They are simplified educational models and synthetic events, not hardware drivers.
 
@@ -65,6 +65,18 @@ python3 examples/pick_place.py --scenario unreachable
 ```
 
 The two-link toy solves position-only IK and interpolates joints. Its declared attachment rule makes it easy to inspect why gripper closure alone does not prove a grasp. It has no contact physics, vertical lift, camera model, or learned policy. Read the [pick-and-place field note](manipulation.md) for the browser IK experiment and the separate Isaac Sim route.
+
+## Lab 5: evaluate a policy comparison
+
+```bash
+python3 examples/evaluate.py
+```
+
+This reads 12 invented trial labels and computes results by policy, condition, and evidence source. It keeps unconfirmed outcomes in the attempt count, separates assisted placements from autonomous placements, and includes failed/recovery/reset time in trial throughput.
+
+The candidate has 3/3 verified nominal placements, but one needs help. In the shifted-tray condition it has 1/3 verified placements and an unconfirmed outcome. Explain why one impressive headline is insufficient. Read the [evaluation guide](evaluation.md) for the full expected counts, fixture-editing exercise, and sim-to-real test matrix.
+
+This is a report-analysis lab. It does not execute a policy or establish measured robot performance. The fixture explicitly labels every trial as synthetic.
 
 ## Keep your results
 

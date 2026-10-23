@@ -22,6 +22,14 @@ If you cannot run GPU generation, design the experiment using an explicit scene 
 
 ## Today's practice
 
+### Add a result you can compute on a laptop
+
+Run `python3 examples/evaluate.py` from the repository. The invented trial fixture separates nominal and shifted-tray results, human help, and unconfirmed outcomes. Use the [evaluation guide](../pages/evaluation.md) to explain why the candidate's perfect nominal placement count does not establish better autonomous performance.
+
+Save `evaluation-report.md` with the raw counts and the next condition you would test. This exercise summarizes synthetic labels; it does not train or execute a robot policy.
+
+### Plan the next simulation experiment
+
 Write a test matrix for low lighting, reflective packaging, partial occlusion, changed friction, and delayed observations. For each condition, name the subsystem being tested and the measurement that would expose a failure.
 
 Optional extension: inspect a Cosmos project's model card and example output. List what it can suggest and what still needs validation in a simulator or physical environment.

@@ -8,6 +8,8 @@ Run the control and estimation labs. Generate the four pick-and-place scenarios 
 
 Use the example schema as a starting contract, not a universal robot standard. Do not claim you integrated ROS or Isaac when you only ran the synthetic fixture.
 
+Run `python3 examples/evaluate.py` and explain its nominal/shifted-tray comparison. Keep its invented trial counts separate from the traces you generated. Use it as a reporting template, not evidence that you tested two real policies.
+
 ### ROS + Isaac capstone
 
 Run one supported simulated Franka pick-and-place workflow. Collect task phases, joint state, transforms, gripper requests, cube/tray state, clock information, and observation freshness from actual simulator interfaces. Use one normal run, one moved target or missed grasp, and one disconnected observer. Add a two-arm extension only with a matching supported scene and collision/control setup.
@@ -20,6 +22,8 @@ Compare the scripted arm baseline with one demonstration policy or compatible VL
 
 ## Your deliverables
 
+Optional extension: use the [applications guide](../pages/applications.md) to write a one-page pilot decision. Compare accepted output, full-shift throughput, intervention load, and costs with a baseline. Label any invented figures as assumptions.
+
 | Artifact | What it should contain |
 |---|---|
 | `README.md` | Task, route chosen, prerequisites, exact reproduction commands |
@@ -27,6 +31,9 @@ Compare the scripted arm baseline with one demonstration policy or compatible VL
 | `architecture.md` | Nodes/components, frames, topics, control ownership, timing assumptions |
 | `runs/` | Raw traces or bag references, run IDs, configurations, results |
 | `report.md` | Success criteria, failure cases, evidence, unknowns, and limitations |
+| `learning-plan.md` | If learning is used: method, dataset revision/splits, observation/action contract |
+| `evaluation-report.md` | Conditions, attempt counts, unknowns, intervention and autonomous-result rates |
+| `pilot-decision.md` | Optional task envelope, comparable costs, and next pilot decision |
 | `next.md` | The next experiment most likely to challenge your conclusions |
 
 Keep recordings and sensitive data out of public repositories unless you have permission to publish them. The portable synthetic fixtures are safe to share as examples.

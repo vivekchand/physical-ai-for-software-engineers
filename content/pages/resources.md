@@ -55,6 +55,19 @@ From AA174A, prioritize lectures 1 (kinematics), 3 (tracking), 7 (sensors), and 
 
 The [model field note](models.md) explains access and compatibility distinctions. The [hardware guide](hardware.md) links to the supplier pages behind each dated price; those are listings rather than independent hardware evaluations.
 
+## Additional course perspective
+
+[Intro to Physical AI and Next Generation Robotics, DuraThink eLearning on Udemy](https://www.udemy.com/course/intro-to-physical-ai-and-next-generation-robotics/) provided an additional perspective during the 23 October 2026 refinement. The 15 accessible lecture transcripts were reviewed for topic coverage: foundations, architecture, NVIDIA tools, learning, cloud demos, and applications. This guide's explanations, examples, trial fixture, and exercises are original; the paid lessons and transcripts are not redistributed.
+
+The practical extensions are [robot learning](robot-learning.md), [cloud Isaac setup](cloud-lab.md), [evaluation and sim-to-real](evaluation.md), and [application economics](applications.md). Use the vendor's installed-version documentation for executable instructions; claims about generalization or business value need task-specific measurements.
+
+### Primary references for these extensions
+
+- [Brev Launchables](https://docs.nvidia.com/brev/concepts/launchables), [instance lifecycle](https://docs.nvidia.com/brev/cli/instance-management), and [Isaac Sim's Brev deployment](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_advanced_cloud_setup_brev.html).
+- [Isaac Lab 3.0 cloud deployment](https://isaac-sim.github.io/IsaacLab/v3.0.0/source/features/cloud_deployment.html) and [imitation-learning workflows](https://isaac-sim.github.io/IsaacLab/v3.0.0/source/features/imitation-learning/index.html).
+- [LeRobot imitation learning](https://huggingface.co/docs/lerobot/il_robots) and [dataset format](https://huggingface.co/docs/lerobot/lerobot-dataset-v3).
+- [NVIDIA robotics architecture](https://www.nvidia.com/en-us/industries/robotics/) and [GR00T interfaces/evaluation](https://github.com/NVIDIA/Isaac-GR00T).
+
 ## ClawMetry and provenance
 
 [ClawMetry's physical AI page](https://clawmetry.com/physical-ai) describes a proposed integration/partnership track. It informs the observation-boundary discussion on day 20; the course does not claim those robot adapters are shipped.

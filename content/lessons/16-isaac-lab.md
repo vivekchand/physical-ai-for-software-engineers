@@ -40,6 +40,12 @@ uv run isaaclab play --rl_library rsl_rl --task Isaac-Cartpole \
 
 Replace the checkpoint path with a real output. Use the same observation/action configuration and physics/backend settings. Add the visualization option from the matching quickstart if supported by your host.
 
+## Read a training run correctly
+
+An iteration can contain many environment steps and optimizer updates. Equal iteration counts need not mean equal experience or compute when environment count, rollout length, or task changes. Record those settings, elapsed time, seed, reward, and operational outcomes. A moving agent in playback proves that a checkpoint executes; it does not establish reliable skill.
+
+Start with [the robot-learning guide](../pages/robot-learning.md) if the distinction between reinforcement learning, demonstrations, and VLA adaptation is unclear. Use the [cloud lab](../pages/cloud-lab.md) if your training host is remote. These are optional extensions to today's small task.
+
 ## Today's practice
 
 Save the task configuration, seed, package commit, backend, checkpoint path, reward curve, and evaluation results. Repeat with a different seed or initial condition. Explain which results generalize and which only describe that run.

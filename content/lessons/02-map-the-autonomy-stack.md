@@ -22,6 +22,18 @@ Think of the stack as interacting services, but remember their rates and deadlin
 
 Distributed traces tell you which component ran. Robotic traces also need to explain which observation, timestamp, transform, model, and state estimate informed an action. A timestamped event graph is more honest than pretending all messages form one perfectly synchronized sequence.
 
+## Keep execution and learning separate
+
+The running robot reads observations and executes a selected policy/controller. The development pipeline collects demonstrations and failures, trains a candidate, evaluates it, and releases an approved version. Recording a failure does not mean the running robot should immediately update its own weights.
+
+```text
+recorded episodes → dataset revision → training → candidate checkpoint
+                                                   ↓
+running robot ← versioned release ← held-out evaluation + review
+```
+
+Attach dataset, calibration, preprocessing, policy, and controller revisions to each result. Keep an explicit rollback to a known configuration. The [learning guide](../pages/robot-learning.md) develops the data contract and action interface behind these arrows.
+
 ## Failure belongs somewhere
 
 Suppose the cube never reaches the tray. The reason might be:

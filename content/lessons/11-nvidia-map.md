@@ -17,6 +17,12 @@ OpenUSD describes composable scene assets. Omniverse/Kit supports the applicatio
 
 TensorRT and Triton concern inference optimization and serving. OSMO orchestrates workflows across compute resources. They solve problems you may meet after a small local experiment works.
 
+## Training, simulation, and deployment computers
+
+[NVIDIA's three-computer framing](https://www.nvidia.com/en-us/industries/robotics/) separates training, simulation, and execution near the robot. Treat these as workload roles; a small experiment may share a workstation, while larger jobs use separate machines.
+
+For our arm: training consumes episodes and emits checkpoints; simulation produces observations and tests actions; deployment runs a chosen policy with local control. Move versioned artifacts between those roles. A remote GPU desktop or Brev launchable supplies compute/setup, rather than a new learning algorithm.
+
 ## A practical ordering
 
 1. Establish a ROS graph and a robot interface contract.

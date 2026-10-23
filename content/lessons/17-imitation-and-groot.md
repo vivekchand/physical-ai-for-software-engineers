@@ -26,6 +26,12 @@ Dream-1 is introduced by Dream Labs as a hosted WAM for manipulation. Its review
 
 The same rule applies to every model: visual similarity to a demo does not establish compatibility.
 
+## Language understanding is one part of execution
+
+For “put the red cube in the tray,” distinguish identifying the intended object from choosing a feasible grasp and executing it. A model's action representation may be joint targets, end-effector deltas, continuous chunks, or a controller-specific latent. Do not assume the same output directly drives every robot's motors.
+
+“Zero-shot” describes what adaptation was omitted in a particular evaluation. It is not a guarantee for arbitrary tasks, instructions, or hardware. Record which objects, layouts, and embodiments the evidence covers. The [learning guide](../pages/robot-learning.md) explains dataset splits and chunk execution; the [evaluation guide](../pages/evaluation.md) supplies a comparison protocol.
+
 ## Inspect before running
 
 Read the model card and repository at a pinned revision. Record expected camera views and timestamps, state fields, normalization/history, joint or end-effector actions, coordinate frames, units, chunk duration, control rate, IK/controller requirements, compute, and licenses.
