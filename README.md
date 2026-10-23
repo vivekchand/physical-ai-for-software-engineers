@@ -1,6 +1,6 @@
 # Physical AI for Software Engineers
 
-**Your code. The real world.**
+**Learn robotics, ROS 2, and NVIDIA Isaac by building a pick-and-place robot.**
 
 An original, open 21-day field guide for software engineers entering robotics and
 physical AI. Connect theory from primary references such as PORA to practical
