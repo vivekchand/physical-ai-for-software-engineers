@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate all generated local destinations, fragments, and content coverage."""
 import argparse
+import hashlib
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -59,6 +60,10 @@ def main():
         rel = path.relative_to(root).as_posix()
         page = Page(text)
         parsed[rel] = page
+        for asset in ("app.js", "style.css"):
+            digest = hashlib.sha256((root / "assets" / asset).read_bytes()).hexdigest()[:12]
+            if f"{base}/assets/{asset}?v={digest}" not in page.refs:
+                errors.append(f"{rel}: missing current content version for {asset}")
         if page.title_text in title_owners:
             errors.append(f"{rel}: duplicate document title also used by {title_owners[page.title_text]}")
         title_owners[page.title_text] = rel

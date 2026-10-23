@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build readable, searchable static pages from the original Markdown chapters."""
 import argparse
+import hashlib
 import html
 import json
 import math
@@ -70,6 +71,8 @@ def main():
         return text.replace("{{single_arm_table}}", price_table(hardware["single_arm_options"])).replace(
             "{{bimanual_table}}", price_table(hardware["bimanual_options"]))
     shell = Template((ROOT / "templates/base.html").read_text())
+    asset_versions = {name: hashlib.sha256((ROOT / "assets" / name).read_bytes()).hexdigest()[:12]
+                      for name in ("app.js", "style.css")}
     search = []
     urls = []
 
@@ -90,7 +93,8 @@ def main():
         canonical = f"{ORIGIN}{base}/" + (path[:-10] if path.endswith("index.html") else path)
         result = shell.substitute(base=base, title=html.escape(title), description=html.escape(description, quote=True),
             canonical=canonical, content=content, navigation="".join(nav), toc=toc, day=day,
-            repo=REPO, source=source, body_class="home-page" if not path.startswith("days/") else "lesson-page")
+            repo=REPO, source=source, script_version=asset_versions["app.js"], style_version=asset_versions["style.css"],
+            body_class="home-page" if not path.startswith("days/") else "lesson-page")
         dest.write_text(result)
         urls.append(canonical)
 
