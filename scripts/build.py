@@ -13,11 +13,31 @@ import markdown
 ROOT = Path(__file__).resolve().parents[1]
 REPO = "https://github.com/vivekchand/physical-ai-for-software-engineers"
 ORIGIN = "https://vivekchand.github.io"
+FIELD_NOTES = [
+    ("setup", "Choose your starting setup", "A laptop path for everyone, a GPU path when you are ready."),
+    ("manipulation", "Pick it up. Put it down. Prove it.", "One arm, a red cube, and a tray. A practical path from kinematics to learned manipulation."),
+    ("hardware", "Your first arm, at your budget", "Dated supplier prices and package details, from portable simulation to a bimanual research station."),
+    ("models", "Meet the robot models", "Dream-1, VLAs, world-action models, and the interface that connects a model to your arm."),
+    ("nvidia", "The NVIDIA robotics map", "A source-linked map of what each tool is for, and what to install first."),
+    ("resources", "Go deeper, deliberately", "The original references behind the guide, organized by the question you are trying to answer."),
+    ("glossary", "A working vocabulary", "Plain-language definitions you can use in an engineering conversation."),
+    ("roadmap", "After day 21", "Turn a first project into deeper engineering competence."),
+    ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure.")
+]
+
+
+def resolve_links(text, base):
+    # One placeholder keeps Markdown readable in GitHub and portable in a project site.
+    text = text.replace("{{base}}", base)
+    # Source-relative links work on GitHub; compiled links work in chapters and the book.
+    for slug, _, _ in FIELD_NOTES:
+        text = re.sub(r'\]\((?:\.\./pages/)?' + re.escape(slug) + r'\.md(#[^)]*)?\)',
+                      lambda match, slug=slug: f']({base}/{slug}/{match[1] or ""})', text)
+    return text
 
 
 def render_md(text, base):
-    # One placeholder keeps Markdown readable in GitHub and portable in a project site.
-    text = text.replace("{{base}}", base)
+    text = resolve_links(text, base)
     engine = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "admonition", "attr_list"])
     body = engine.convert(text)
     return body, engine.toc
@@ -38,6 +58,17 @@ def main():
     shutil.copytree(ROOT / "assets", out / "assets")
     shutil.copytree(ROOT / "examples", out / "examples", ignore=shutil.ignore_patterns("__pycache__"))
     curriculum = json.loads((ROOT / "curriculum.json").read_text())
+    hardware = json.loads((ROOT / "data/hardware.json").read_text())
+    def price_table(rows):
+        table = ["| Option / supplier link | Listed USD | Package scope | Learning fit |",
+                 "|---|---:|---|---|"]
+        for row in rows:
+            price = "Quote" if row["price"] is None else f'${row["price"]:,.0f}'
+            table.append(f'| [{row["name"]}]({row["url"]}) | {price} | {row["package"]} | {row["fit"]} |')
+        return "\n".join(table)
+    def with_hardware_tables(text):
+        return text.replace("{{single_arm_table}}", price_table(hardware["single_arm_options"])).replace(
+            "{{bimanual_table}}", price_table(hardware["bimanual_options"]))
     shell = Template((ROOT / "templates/base.html").read_text())
     search = []
     urls = []
@@ -53,6 +84,9 @@ def main():
                     continue
                 cls = ' class="active" aria-current="page"' if active == item["slug"] else ""
                 nav.append(f'<a{cls} data-day-link="{item["day"]}" href="{base}/days/{item["slug"]}/"><span class="day-num">{item["day"]:02}</span><span>{html.escape(item["title"])}</span><span class="nav-check" aria-hidden="true"></span></a>')
+        nav.append('<p class="nav-group">Field notes</p>')
+        for slug, note_title in [("manipulation", "Pick-and-place lab"), ("hardware", "Buy your first arm"), ("models", "VLAs & Dream Labs"), ("nvidia", "NVIDIA map")]:
+            nav.append(f'<a href="{base}/{slug}/">{html.escape(note_title)}</a>')
         canonical = f"{ORIGIN}{base}/" + (path[:-10] if path.endswith("index.html") else path)
         result = shell.substitute(base=base, title=html.escape(title), description=html.escape(description, quote=True),
             canonical=canonical, content=content, navigation="".join(nav), toc=toc, day=day,
@@ -88,9 +122,9 @@ def main():
         plain = html.unescape(re.sub(r"<[^>]+>", " ", body))
         search.append({"title":item["title"], "day":item["day"], "url":f"{base}/days/{item['slug']}/", "text":re.sub(r"\s+", " ", plain)})
 
-    for slug, title, deck in [("setup", "Choose your starting setup", "A laptop path for everyone, a GPU path when you are ready."), ("nvidia", "The NVIDIA robotics map", "A source-linked map of what each tool is for, and what to install first."), ("resources", "Go deeper, deliberately", "The original references behind the guide, organized by the question you are trying to answer."), ("glossary", "A working vocabulary", "Plain-language definitions you can use in an engineering conversation."), ("roadmap", "After day 21", "Turn a first project into deeper engineering competence."), ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure.")]:
+    for slug, title, deck in FIELD_NOTES:
         source = f"content/pages/{slug}.md"
-        text = (ROOT/source).read_text()
+        text = with_hardware_tables((ROOT/source).read_text())
         body, toc = render_md(text, base)
         content = f'<div class="lesson-header"><p class="eyebrow">FIELD NOTES / {slug.upper()}</p><h1>{title}</h1><p class="lesson-deck">{deck}</p></div><article class="prose">{body}</article>'
         page(f"{slug}/index.html", title, deck, content, toc=toc, source=source)
@@ -105,8 +139,16 @@ def main():
         body = body.replace('<h3', '<h4').replace('</h3>', '</h4>').replace('<h2', '<h3').replace('</h2>', '</h3>')
         chapters.append(f'<section class="book-chapter" id="day-{item["day"]}"><p class="eyebrow">DAY {item["day"]:02}</p><h2>{html.escape(item["title"])}</h2>{body}</section>')
         contents.append(f'<li><a href="#day-{item["day"]}">{item["day"]:02}. {html.escape(item["title"])}</a></li>')
-        manuscript.append(f'\n\n# Day {item["day"]:02}: {item["title"]}\n\n{raw}')
-    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 days in one place. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
+        manuscript.append(f'\n\n# Day {item["day"]:02}: {item["title"]}\n\n{resolve_links(raw, ORIGIN + base)}')
+    for slug, title in [("manipulation", "Pick-and-place field note"), ("models", "Robot models and Dream Labs"), ("hardware", "Hardware buying guide")]:
+        raw = with_hardware_tables((ROOT/f"content/pages/{slug}.md").read_text())
+        body, _ = render_md(raw, base)
+        body = re.sub(r'id="([^"]+)"', lambda m: f'id="appendix-{slug}-{m[1]}"', body)
+        body = body.replace('<h3', '<h4').replace('</h3>', '</h4>').replace('<h2', '<h3').replace('</h2>', '</h3>')
+        chapters.append(f'<section class="book-chapter" id="appendix-{slug}"><p class="eyebrow">FIELD NOTE</p><h2>{title}</h2>{body}</section>')
+        contents.append(f'<li><a href="#appendix-{slug}">{title}</a></li>')
+        manuscript.append(f'\n\n# Field note: {title}\n\n{resolve_links(raw, ORIGIN + base)}')
+    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 days, with manipulation, model, and hardware field notes. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
     page("book/index.html", "The reading edition", "All 21 original lessons in a printable reading edition.", book)
     (out/"book.md").write_text("\n".join(manuscript))
     page("404.html", "Page not found", "Find your way back to the field guide.", f'<div class="lesson-header"><p class="eyebrow">404 / OFF THE MAP</p><h1>Let’s find your way back.</h1><p class="lesson-deck">This page has moved or does not exist.</p><a class="button primary" href="{base}/">Open the learning path →</a></div>')

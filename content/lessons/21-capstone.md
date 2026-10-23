@@ -1,18 +1,22 @@
 ## Build a report another engineer can reproduce
 
-Return to your day-1 mission. Your final artifact is a working experiment plus an evidence-based explanation of its behavior. Select the route matching your actual environment.
+Return to your day-1 mission. Your main task is putting the red cube in the tray. Your final artifact is a working experiment plus an evidence-based explanation of its behavior. Select the route matching your actual environment.
 
 ### Laptop capstone
 
-Run the control and estimation labs. Generate all five mission scenarios. Write an analyzer that reconstructs a task timeline, deduplicates request identifiers for counting, preserves raw events, and marks physical outcomes unknown when measurements are missing.
+Run the control and estimation labs. Generate the four pick-and-place scenarios and the five secondary mission/cancellation fixtures. Write an analyzer that reconstructs a task timeline, deduplicates request identifiers for counting, preserves raw events, and marks physical outcomes unknown when measurements are missing.
 
 Use the example schema as a starting contract, not a universal robot standard. Do not claim you integrated ROS or Isaac when you only ran the synthetic fixture.
 
 ### ROS + Isaac capstone
 
-Run one supported simulated delivery/navigation workflow. Collect task outcomes, state samples, transforms, clock information, and connection/freshness observations from real simulator interfaces. Use one normal run, one changed obstacle, and one disconnected observer.
+Run one supported simulated Franka pick-and-place workflow. Collect task phases, joint state, transforms, gripper requests, cube/tray state, clock information, and observation freshness from actual simulator interfaces. Use one normal run, one moved target or missed grasp, and one disconnected observer. Add a two-arm extension only with a matching supported scene and collision/control setup.
 
-Add policy training only if it serves your chosen task. An Isaac Lab Cartpole experiment can be a separate learning artifact; it does not need to be disguised as the warehouse controller.
+Add policy training only if it serves your chosen task. An Isaac Lab Cartpole experiment can be a separate learning artifact; it does not need to be disguised as the manipulation controller.
+
+## Optional policy comparison
+
+Compare the scripted arm baseline with one demonstration policy or compatible VLA/WAM route. Keep scene variations and outcome definitions fixed. Record model/access revisions and show when an action chunk was generated, executed, expired, or interrupted. Document incompatibilities instead of claiming a generic model works on the arm.
 
 ## Your deliverables
 

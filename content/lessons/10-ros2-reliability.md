@@ -11,18 +11,18 @@ For some sensor streams, receiving fresh samples is more useful than receiving e
 Use these only with your isolated simulator or recording environment after the relevant nodes exist:
 
 ```bash
-ros2 topic info /odom --verbose
-ros2 topic hz /odom
-ros2 run tf2_ros tf2_echo map base_link
+ros2 topic info /joint_states --verbose
+ros2 topic hz /joint_states
+ros2 run tf2_ros tf2_echo base_link ee_link
 ros2 topic echo /clock --once
 ```
 
-Topic and frame names vary. Replace them using the graph you discovered. A missing `map` frame may simply mean no global localization component is running. The CLI rate is an observed receiving rate, not a complete proof of publisher performance.
+Topic and frame names vary. Replace them using the graph you discovered. The arm may use different base/end-effector frame names; discover them before running the command. A mobile graph may additionally provide `map` and `odom`. The CLI rate is an observed receiving rate, not a complete proof of publisher performance.
 
 ## Record an experiment
 
 ```bash
-ros2 bag record -o mission_run /odom /tf /tf_static /clock
+ros2 bag record -o mission_run /joint_states /tf /tf_static /clock
 ```
 
 After stopping the recording with Ctrl+C, inspect it:

@@ -2,7 +2,7 @@
 
 A path describes a geometric route. A trajectory specifies how the robot should move over time. A controller attempts to execute it. Treating these as one operation makes failures harder to understand.
 
-For our warehouse robot, a path may pass around a pallet. A feasible trajectory must also respect turning, velocity, acceleration, and actuator constraints. A moving person introduces a time-dependent obstacle.
+For our arm, a path moves through joint configurations toward a grasp or tray pose. A feasible trajectory must also respect joint limits, velocity, acceleration, actuator constraints, and the cube carried after grasp. Nearby people or moving objects add time-dependent constraints.
 
 ## Three families to recognize
 
@@ -12,7 +12,7 @@ For our warehouse robot, a path may pass around a pallet. A feasible trajectory 
 
 **Trajectory optimization:** choose a sequence of states and inputs to reduce an objective while satisfying constraints. The objective might trade travel time, energy, and smoothness. Local solutions, initialization, and model accuracy matter.
 
-Configuration space includes the robot's shape or joint configuration. Planning for a point while ignoring the delivery robot's footprint can produce a route through a gap the actual robot cannot fit through.
+Configuration space includes the robot's joint configuration and geometry. Checking only the gripper tip can miss an elbow hitting the table. After grasp, include the carried cube in the relevant collision geometry. The optional mobile comparison similarly needs the robot's footprint, not just a point.
 
 ## Failure is information
 
@@ -24,7 +24,7 @@ Repeated planning can be a reasonable response to a changing obstacle. Diagnose 
 
 Run the A* notebook linked below. Add an obstacle across a corridor, then open a narrow passage. Change the grid resolution. Explain whether a failure comes from the environment, the discretization, or the search budget.
 
-Then draw a collision-free path with a sharp corner. Describe what must change before a robot can track it at speed. Save the before/after explanation for your mission report.
+Then sketch approach, grasp, lift, transfer, place, and retreat phases for the arm. Identify when object attachment changes the collision model. Describe why interpolating between two valid joint configurations does not establish that every intermediate configuration is valid.
 
 ## Checkpoint
 

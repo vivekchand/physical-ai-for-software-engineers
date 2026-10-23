@@ -1,6 +1,6 @@
 ## Choose by the problem you are solving
 
-The NVIDIA robotics ecosystem spans simulation, training, perception, inference, deployment, and workflow infrastructure. You do not need every component to begin. For the delivery mission, start with simulation and a ROS graph. Add training only when the task requires a learned policy.
+The NVIDIA robotics ecosystem spans simulation, training, perception, inference, deployment, and workflow infrastructure. You do not need every component to begin. For the pick-and-place mission, start with simulation and a ROS graph. Add training only when the task requires a learned policy.
 
 | Need | Relevant tool | First question |
 |---|---|---|

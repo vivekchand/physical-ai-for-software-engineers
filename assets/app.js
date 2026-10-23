@@ -70,6 +70,32 @@
   input.addEventListener('input',search);
   document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();if(!dialog.open){dialog.showModal();input.focus();}else dialog.close();}});
 
+  // One branch of position-only planar IK; not a hardware or contact simulation.
+  const armLab=document.querySelector('[data-arm-lab]');
+  if(armLab){
+    const xControl=armLab.querySelector('[name="arm-x"]'),yControl=armLab.querySelector('[name="arm-y"]');
+    const solve=()=>{
+      const x=Number(xControl.value),y=Number(yControl.value),l1=.25,l2=.20;
+      const cosine=(x*x+y*y-l1*l1-l2*l2)/(2*l1*l2);
+      const px=value=>240+value*450,py=value=>260-value*450;
+      armLab.querySelector('[data-arm-x-label]').textContent=`${x.toFixed(2)} m`;
+      armLab.querySelector('[data-arm-y-label]').textContent=`${y.toFixed(2)} m`;
+      const target=armLab.querySelector('[data-arm-target]');target.setAttribute('cx',String(px(x)));target.setAttribute('cy',String(py(y)));
+      const group=armLab.querySelector('[data-arm-links]');
+      if(cosine < -1-1e-10 || cosine > 1+1e-10){group.setAttribute('visibility','hidden');armLab.querySelector('[data-arm-status]').textContent='Unreachable target in this toy workspace. No joint solution is shown.';return;}
+      const q2=Math.acos(Math.max(-1,Math.min(1,cosine)));
+      const q1=Math.atan2(y,x)-Math.atan2(l2*Math.sin(q2),l1+l2*Math.cos(q2));
+      const ex=px(l1*Math.cos(q1)),ey=py(l1*Math.sin(q1));
+      const upper=armLab.querySelector('[data-arm-upper]'),fore=armLab.querySelector('[data-arm-fore]');
+      upper.setAttribute('x2',String(ex));upper.setAttribute('y2',String(ey));
+      fore.setAttribute('x1',String(ex));fore.setAttribute('y1',String(ey));fore.setAttribute('x2',String(px(x)));fore.setAttribute('y2',String(py(y)));
+      const elbow=armLab.querySelector('[data-arm-elbow]'),eef=armLab.querySelector('[data-arm-eef]');
+      elbow.setAttribute('cx',String(ex));elbow.setAttribute('cy',String(ey));eef.setAttribute('cx',String(px(x)));eef.setAttribute('cy',String(py(y)));
+      group.setAttribute('visibility','visible');
+      armLab.querySelector('[data-arm-status]').textContent=`Position solution: shoulder ${(q1*180/Math.PI).toFixed(1)}° · elbow ${(q2*180/Math.PI).toFixed(1)}°. This does not check collision, orientation, contact, or joint limits.`;
+    };
+    xControl.addEventListener('input',solve);yControl.addEventListener('input',solve);solve();
+  }
   // A one-dimensional toy plant, not an Isaac or hardware simulation.
   const lab=document.querySelector('[data-control-lab]');
   if(lab){

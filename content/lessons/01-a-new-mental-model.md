@@ -1,8 +1,8 @@
 ## What you are learning
 
-A robot is a program whose outputs change its future inputs. Driving forward changes the next camera image. Reaching for a box changes the geometry of the scene. Your code operates inside that loop.
+A robot is a program whose outputs change its future inputs. Reaching for a cube changes the next camera image. Closing a gripper changes contact with the object. Your code operates inside that loop.
 
-Imagine a delivery service. A backend can accept a request, enqueue a job, and report that the worker received it. A delivery robot adds another question: did the physical delivery happen? An accepted command, a controller's estimate, and an independently observed outcome are different pieces of evidence.
+Imagine a backend accepting a job and reporting that a worker received it. A pick-and-place arm adds another question: did the cube actually end up in the tray? An accepted command, a controller's estimate, and an independently observed outcome are different pieces of evidence.
 
 ## The software instincts to keep
 
@@ -16,7 +16,9 @@ Automation can work in a carefully arranged environment. Autonomy involves choos
 
 ## One running example
 
-Throughout this guide, our robot moves a box from pickup A to dock B in a simulated warehouse. It must find the box, estimate where it is, choose a route, follow it, and report what happened. A person can request a cancellation. We will keep asking what each subsystem actually knows.
+Throughout this guide, a tabletop arm puts a red cube in a tray. It must locate the cube, transform the pose into the arm's frame, reach a grasp, close the gripper, lift, transfer, release, and verify placement. A person can request an interruption. We will keep asking what each subsystem actually knows.
+
+Start with a transparent scripted baseline. Later, examine how a demonstration policy, VLA, or world-action model could replace part of it. The [pick-and-place field note](../pages/manipulation.md) includes a browser IK experiment and a runnable Python lab. Mobile robots remain a secondary example for localization and navigation.
 
 You can learn the core ideas on a laptop. GPU exercises later use manufacturer-supported environments. A small mathematical model, a photorealistic simulation, and a physical robot are three different kinds of evidence.
 
@@ -24,7 +26,7 @@ You can learn the core ideas on a laptop. GPU exercises later use manufacturer-s
 
 Write a one-page mission specification:
 
-1. What counts as a successful delivery? Specify a measurable outcome.
+1. What counts as a successful placement? Define a tray region, release condition, and stability check.
 2. What can the robot sense? What remains unknown?
 3. Which failures should be recoverable, and which require an operator?
 4. Who can authorize the task, and who owns the machine's local control?
@@ -40,4 +42,4 @@ Save it as `mission.md`. Revisit it on day 21. Plan about 60 minutes including t
 - [PORA: Preface](https://porabook.com/book/preface/) for the integrated view of autonomy.
 - [PORA: Robot Autonomy Software](https://porabook.com/book/software/) for the systems perspective.
 
-These are optional deeper readings. The explanations and warehouse exercises here are original, independent educational material.
+These are optional deeper readings. The explanations and tabletop exercises here are original, independent educational material.

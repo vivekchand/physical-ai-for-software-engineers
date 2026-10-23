@@ -13,6 +13,8 @@ class Page(HTMLParser):
         super().__init__()
         self.ids, self.refs, self.titles = set(), [], 0
         self.in_head = False
+        self.in_title = False
+        self.title_text = ""
         self.duplicate_ids = []
         self.feed(text)
 
@@ -22,6 +24,7 @@ class Page(HTMLParser):
             self.in_head = True
         if tag == "title" and self.in_head:
             self.titles += 1
+            self.in_title = True
         if "id" in attrs:
             if attrs["id"] in self.ids:
                 self.duplicate_ids.append(attrs["id"])
@@ -31,8 +34,14 @@ class Page(HTMLParser):
                 self.refs.append(attrs[attr])
 
     def handle_endtag(self, tag):
+        if tag == "title":
+            self.in_title = False
         if tag == "head":
             self.in_head = False
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_text += data
 
 
 def main():
@@ -43,12 +52,16 @@ def main():
     root = Path(args.directory).resolve()
     base = "/" + args.base_path.strip("/") if args.base_path.strip("/") else ""
     parsed = {}
+    title_owners = {}
     errors = []
     for path in root.rglob("*.html"):
         text = path.read_text()
         rel = path.relative_to(root).as_posix()
         page = Page(text)
         parsed[rel] = page
+        if page.title_text in title_owners:
+            errors.append(f"{rel}: duplicate document title also used by {title_owners[page.title_text]}")
+        title_owners[page.title_text] = rel
         if page.titles != 1 or "<html lang=\"en\">" not in text:
             errors.append(f"{rel}: missing page title or language")
         if page.duplicate_ids:

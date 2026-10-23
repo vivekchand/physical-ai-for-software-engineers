@@ -1,4 +1,4 @@
-## Run three small experiments anywhere
+## Run four small experiments anywhere
 
 Clone the repository first using the Setup page. These examples require Python 3.10+ and no third-party packages. They are simplified educational models and synthetic events, not hardware drivers.
 
@@ -51,7 +51,20 @@ python3 examples/ros2_observer.py --topic /odom
 
 This optional observer emits JSONL and sends no robot commands. Source frames/timestamps and receipt timestamps remain separate. Its subscription uses sensor-data QoS; inspect compatibility with your actual publisher. It does not validate the robot's estimate against physical truth.
 
-The CPU tests do not execute this ROS adapter or GPU workflows. Follow days 9–14 for integration evidence.
+For the main arm task, observe `sensor_msgs/msg/JointState` with `python3 examples/ros2_joint_observer.py --topic /joint_states` instead. The odometry observer remains a mobile-robot comparison.
+
+The CPU tests do not execute these ROS adapters or GPU workflows. Follow days 9–14 for integration evidence.
+
+## Lab 4: pick-and-place and the grasp assumption
+
+```bash
+python3 examples/pick_place.py --scenario normal
+python3 examples/pick_place.py --scenario missed-grasp
+python3 examples/pick_place.py --scenario slip
+python3 examples/pick_place.py --scenario unreachable
+```
+
+The two-link toy solves position-only IK and interpolates joints. Its declared attachment rule makes it easy to inspect why gripper closure alone does not prove a grasp. It has no contact physics, vertical lift, camera model, or learned policy. Read the [pick-and-place field note](manipulation.md) for the browser IK experiment and the separate Isaac Sim route.
 
 ## Keep your results
 
