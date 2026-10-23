@@ -20,7 +20,7 @@ On a supported Linux workstation installation, launch from its extracted install
 ./isaac-sim.sh
 ```
 
-Then use the release's Basic Robot tutorial:
+Then use the release's Basic Robot tutorial, followed by the [Franka pick-and-place example](https://docs.isaacsim.omniverse.nvidia.com/latest/examples/manipulation_franka_pick_place.html):
 
 1. Open the tutorial's supported robot scene.
 2. Start simulation and confirm the scene advances.

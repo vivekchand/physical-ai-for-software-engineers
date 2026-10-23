@@ -9,12 +9,17 @@ ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capsto
 **[Read the guide](https://vivekchand.github.io/physical-ai-for-software-engineers/)** ·
 **[Choose your setup](https://vivekchand.github.io/physical-ai-for-software-engineers/setup/)** ·
 **[NVIDIA map](https://vivekchand.github.io/physical-ai-for-software-engineers/nvidia/)** ·
+**[Pick-and-place](https://vivekchand.github.io/physical-ai-for-software-engineers/manipulation/)** ·
+**[Buying an arm](https://vivekchand.github.io/physical-ai-for-software-engineers/hardware/)** ·
+**[Robot models](https://vivekchand.github.io/physical-ai-for-software-engineers/models/)** ·
 **[Reading edition](https://vivekchand.github.io/physical-ai-for-software-engineers/book/)**
 
 ## What you can finish with
 
 - A working mental model of perception, estimation, planning, control, and learning.
-- Three portable experiments covering feedback, noisy measurements, and mission evidence.
+- Four portable experiments covering feedback, noisy measurements, mission evidence, and pick-and-place kinematics.
+- A red-cube-to-tray arm task throughout the core, with a bimanual extension.
+- A source-linked introduction to Dream-1, VLAs/WAMs, and dated hardware buying options.
 - Source-reviewed ROS 2, Isaac Sim, and Isaac Lab reference exercises.
 - An environment manifest, failure investigations, and a reproducible project report.
 - Original Markdown chapters that can evolve into a longer book.
@@ -33,7 +38,7 @@ The complete GPU route requires compatible hardware and additional setup time.
 | 01 | [Your code meets the real world](content/lessons/01-a-new-mental-model.md) |
 | 02 | [Read the autonomy stack](content/lessons/02-map-the-autonomy-stack.md) |
 | 03 | [Frames, time, and units](content/lessons/03-frames-time-and-units.md) |
-| 04 | [Model a moving robot](content/lessons/04-motion-and-dynamics.md) |
+| 04 | [Model an arm and its gripper](content/lessons/04-motion-and-dynamics.md) |
 | 05 | [Find a path. Make it feasible.](content/lessons/05-planning-and-trajectories.md) |
 | 06 | [Close the feedback loop](content/lessons/06-feedback-control.md) |
 | 07 | [See through a robot's sensors](content/lessons/07-perception.md) |
@@ -48,7 +53,7 @@ The complete GPU route requires compatible hardware and additional setup time.
 | 11 | [Find your way around NVIDIA](content/lessons/11-nvidia-map.md) |
 | 12 | [Get Isaac Sim running](content/lessons/12-isaac-sim-setup.md) |
 | 13 | [Bridge the simulated robot to ROS 2](content/lessons/13-isaac-sim-ros2.md) |
-| 14 | [Navigate, localize, and reconstruct](content/lessons/14-navigation-and-mapping.md) |
+| 14 | [Plan a grasp. Place the cube.](content/lessons/14-navigation-and-mapping.md) |
 
 ### Week 3: learn, deploy, observe
 
@@ -56,7 +61,7 @@ The complete GPU route requires compatible hardware and additional setup time.
 |---|---|
 | 15 | [Choose actions over time](content/lessons/15-decisions-and-rewards.md) |
 | 16 | [Train and inspect an Isaac Lab policy](content/lessons/16-isaac-lab.md) |
-| 17 | [Learn from demonstrations](content/lessons/17-imitation-and-groot.md) |
+| 17 | [Meet VLAs and world-action models](content/lessons/17-imitation-and-groot.md) |
 | 18 | [Build better data and test worlds](content/lessons/18-synthetic-data-and-cosmos.md) |
 | 19 | [Bring a policy toward deployment](content/lessons/19-deployment-and-jetson.md) |
 | 20 | [Make behavior inspectable](content/lessons/20-observability-and-intervention.md) |
@@ -72,12 +77,19 @@ cd physical-ai-for-software-engineers
 python3 examples/control.py --gain 2 --delay-steps 0
 python3 examples/estimate.py --seed 7
 python3 examples/mission.py --scenario delayed
+python3 examples/pick_place.py --scenario normal
 python3 -m unittest discover -s tests -v
 ```
 
 On Windows, use `py -3` if that is your launcher. The optional
-`examples/ros2_observer.py` needs a separately installed/sourced ROS 2 environment.
-It subscribes to odometry and does not send movement commands.
+`examples/ros2_joint_observer.py` and `examples/ros2_observer.py` need a separately
+installed/sourced ROS 2 environment. They subscribe to joint state or odometry and
+do not send movement commands.
+
+The arm toy solves one branch of two-link planar IK and uses a synthetic grasp rule.
+It does not simulate contact, vertical lifting, a specific purchased arm, or a VLA.
+Dream Labs/API introductions are source-reviewed; no API credentials, purchases,
+uploads, or remote robot actions are required to read this guide or run its toy labs.
 
 ## NVIDIA and ROS version policy
 

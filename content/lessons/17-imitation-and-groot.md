@@ -1,40 +1,48 @@
-## Demonstrations supply another kind of supervision
+## First learn from demonstrations
 
-Imitation learning uses expert behavior as training information. Behavior cloning learns to predict demonstrated actions from observations. Inverse reinforcement learning attempts to infer a reward from demonstrations. The quality, coverage, and consistency of the demonstrations matter.
+Imitation learning uses expert behavior as training information. Behavior cloning learns demonstrated actions from observations. Inverse reinforcement learning attempts to infer a reward from demonstrations. Data quality, coverage, and consistency matter.
 
-A policy can drift into states missing from its training data. Small action errors change future observations, so imitation is not simply independent classification over a fixed test set. Recovery behavior and operator corrections deserve their own evaluation.
+For the red-cube task, record observation/state/action sequences for successful grasps, transfers, releases, and recoveries. A model can drift into states absent from those demonstrations. Each action changes the next observation, so independent frame accuracy alone is a poor measure of closed-loop skill.
 
-## Where a VLA model fits
+## VLA, WAM, and a useful baseline
 
-A vision-language-action model takes visual and language information, often with robot state, and produces actions in a defined representation. The output might be joint targets, end-effector deltas, or a sequence of actions. A natural-language instruction alone does not specify the controller interface.
+A vision-language-action model (VLA) connects visual/language context and robot inputs to a defined action representation. A world-action model (WAM) couples action prediction with predictions of the world/video. A conventional imitation policy such as ACT supplies a useful baseline without inherently understanding arbitrary task language.
 
-NVIDIA's reviewed GR00T repository describes N1.7 as a generalist VLA model with an embodiment-specific adaptation workflow. Treat “generalist” as a model's scope of intended capability, not evidence it can control your robot without matching interfaces and evaluation. OpenVLA and Physical Intelligence's pi-zero work are other primary research examples to compare.
+For our task, compare these routes:
 
-## Inspect before downloading weights
+| Route | A reference to study | The first question |
+|---|---|---|
+| Demonstration baseline | LeRobot ACT | Does the training data cover this arm and task? |
+| Accessible/open VLA workflows | SmolVLA, OpenVLA, selected openpi checkpoints | What cameras, state, preprocessing, and actions are expected? |
+| Larger/generalist VLA | NVIDIA GR00T, Physical Intelligence π family | Which embodiment and checkpoint actually match? |
+| WAM | Dream Labs Dream-1, DreamZero research | How are action prediction and world prediction connected? |
+| Robotics model family | Gemini Robotics | Is the selected variant a controller/VLA or an embodied reasoner? |
 
-Read the model card and repository at a pinned commit. Record:
+Use the [Models field note](../pages/models.md) for current primary links, access distinctions, and a practical route. This is a map of approaches, not a leaderboard.
 
-1. Expected images, state fields, normalization, and history.
-2. Action dimensions, units, coordinate frame, representation, and rate.
-3. Supported embodiment configuration and controller assumptions.
-4. Inference and fine-tuning hardware requirements separately.
-5. Model, code, and dataset licenses, including any gated access.
+## Dream Labs and the arm example
 
-Never feed a model output directly into unfamiliar hardware just because the tensor dimensions match.
+Dream-1 is introduced by Dream Labs as a hosted WAM for manipulation. Its reviewed scope emphasizes bimanual parallel-gripper robots. A single Franka or SO-101 exercise is not automatically a matching embodiment. Consult its published limitations and current platform requirements before choosing an experiment.
+
+The same rule applies to every model: visual similarity to a demo does not establish compatibility.
+
+## Inspect before running
+
+Read the model card and repository at a pinned revision. Record expected camera views and timestamps, state fields, normalization/history, joint or end-effector actions, coordinate frames, units, chunk duration, control rate, IK/controller requirements, compute, and licenses.
+
+Open source code, open model weights, research descriptions, hosted inference, and commercial support are separate access questions. The π family's openpi checkpoints are not a promise that every newer hosted model is downloadable. A Gemini reasoning endpoint is not automatically a motor controller.
 
 ## Today's practice
 
-Create a model-interface table for GR00T using its current documentation. Compare it with the actual interface of your simulated robot. Identify at least three adaptations or validations that would be required.
-
-Optional GPU extension: follow the repository's inference example using its supplied demonstration data, pinned model revision, and required environment. Log preprocessing, inference duration, action shape, and model version. Do not describe this as robot deployment. Large-model setup is optional in the 21-day core.
+Write an observation/action contract for one open-model route and Dream-1. Compare both with your arm task and record mismatches. Then choose one route to study further. On a suitable environment, use the selected project's supplied-data inference example before planning robot execution. The guide does not authenticate services, upload observations, or control remote playground robots.
 
 ## Checkpoint
 
-<details><summary>Does an action vector with the right length establish compatibility?</summary><p>No. Units, frames, normalization, action meaning, timing, controller expectations, and embodiment matter. A valid tensor can encode the wrong motion.</p></details>
+<details><summary>Does an action vector with the right length establish compatibility?</summary><p>No. Units, frames, normalization, action meaning, timing, controller expectations, and embodiment matter. A valid tensor can encode an unsuitable motion.</p></details>
 
 ## Go deeper
 
 - [PORA: Imitation Learning](https://porabook.com/book/imitation-learning/).
-- [NVIDIA Isaac GR00T repository](https://github.com/NVIDIA/Isaac-GR00T).
-- [OpenVLA research](https://openvla.github.io/).
-- [Physical Intelligence: pi-zero](https://www.pi.website/blog/pi0).
+- [Dream-1 research](https://dreamlabs.ai/research/dream-1/) and [DreamZero](https://dreamzero0.github.io/).
+- [LeRobot](https://huggingface.co/docs/lerobot), [OpenVLA](https://openvla.github.io/), and [openpi](https://github.com/Physical-Intelligence/openpi).
+- [GR00T](https://github.com/NVIDIA/Isaac-GR00T) and [Gemini Robotics](https://deepmind.google/models/gemini-robotics/).

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-labelledby="title desc">
+<title id="title">Two tabletop arms learning to pick and place</title><desc id="desc">Original concept illustration: two articulated arms, a red cube, camera observations, and a blue tray. One arm is the starting exercise; two arms are an extension. This is not a product demonstration.</desc>
+<defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#b2d0ee" stroke-opacity=".12"/></pattern><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dcecfb"/><stop offset="1" stop-color="#789dc2"/></linearGradient><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#b4d797"/></marker></defs>
+<rect width="480" height="420" fill="#172c47"/><rect width="480" height="420" fill="url(#grid)"/>
+<path d="M30 316L234 206L452 317L246 408Z" fill="#203b57" stroke="#577b9c"/>
+<path d="M30 316V327L246 419V408M246 408L452 317V328L246 419" fill="#10243a" stroke="#45627f"/>
+<ellipse cx="109" cy="310" rx="39" ry="17" fill="#0d2136"/>
+<path d="M77 303L106 286L143 305L113 322Z" fill="#a5bfd4" stroke="#d3e6f5"/>
+<path d="M77 303V311L113 332V322M113 322L143 305V314L113 332" fill="#6386a7" stroke="#9bb8d0"/>
+<path d="M108 295L106 238L166 158L247 202L263 233" stroke="#122238" stroke-width="43" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M108 295L106 238L166 158L247 202L263 233" stroke="url(#metal)" stroke-width="31" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="106" cy="238" r="16" fill="#162a40" stroke="#b6d1e6" stroke-width="4"/><circle cx="166" cy="158" r="16" fill="#162a40" stroke="#b6d1e6" stroke-width="4"/><circle cx="247" cy="202" r="14" fill="#162a40" stroke="#b6d1e6" stroke-width="3"/>
+<path d="M246 237L279 220" stroke="#a4c0d8" stroke-width="9"/><path d="M247 238L252 264M276 224L287 249" stroke="#0a1c2e" stroke-width="8"/>
+<path d="M251 254L269 244L288 255L270 266Z" fill="#efa1a8"/><path d="M251 254V277L270 288V266Z" fill="#b84b5c"/><path d="M270 266L288 255V278L270 288Z" fill="#d86b78"/>
+<ellipse cx="377" cy="292" rx="37" ry="16" fill="#0d2136"/>
+<path d="M346 285L377 269L410 286L379 303Z" fill="#a5bfd4" stroke="#d3e6f5"/><path d="M346 285V293L379 312V303M379 303L410 286V295L379 312" fill="#6386a7" stroke="#9bb8d0"/>
+<path d="M378 281L378 210L330 124L290 176L301 216" stroke="#122238" stroke-width="39" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M378 281L378 210L330 124L290 176L301 216" stroke="url(#metal)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="378" cy="210" r="15" fill="#162a40" stroke="#b6d1e6" stroke-width="3"/><circle cx="330" cy="124" r="15" fill="#162a40" stroke="#b6d1e6" stroke-width="3"/><circle cx="290" cy="176" r="13" fill="#162a40" stroke="#b6d1e6" stroke-width="3"/>
+<path d="M284 222L318 213" stroke="#a4c0d8" stroke-width="8"/><path d="M285 222L285 244M317 214L329 236" stroke="#0a1c2e" stroke-width="7"/>
+<path d="M265 322L326 287L391 323L328 360Z" fill="#345f93" stroke="#83b5e0"/>
+<path d="M265 304L326 271L391 306V341L328 378L265 341Z" fill="none" stroke="#548cc3" stroke-width="4"/>
+<path d="M265 305V341L328 378V341Z" fill="#295585"/><path d="M328 341L391 306V341L328 378Z" fill="#3973ab"/>
+<path d="M282 285Q301 272 320 298" stroke="#b4d797" fill="none" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+<rect x="190" y="62" width="38" height="22" rx="3" fill="#9bb8ce"/><circle cx="210" cy="73" r="8" fill="#0f253c" stroke="#b4d797" stroke-width="2"/>
+<path d="M210 84L242 247M210 84L335 291" stroke="#b4d797" stroke-dasharray="4 6" opacity=".45"/>
+<path d="M139 89H74V115" stroke="#8faac4" fill="none"/><text x="34" y="77" fill="#d5e6f5" font-size="11" font-family="monospace">01 / observe</text>
+<text x="344" y="72" fill="#d5e6f5" font-size="10" font-family="monospace">02 / reach</text><path d="M379 82V113" stroke="#8faac4"/>
+<text x="42" y="366" fill="#d5e6f5" font-size="11" font-family="monospace">03 / grasp → place</text><text x="35" y="391" fill="#91aec8" font-size="9" font-family="monospace">one arm first · bimanual next</text>
+</svg>

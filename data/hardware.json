@@ -1,0 +1,117 @@
+{
+  "reviewed": "2026-10-23",
+  "currency": "USD",
+  "single_arm_options": [
+    {
+      "name": "Simulation + portable labs",
+      "price": 0,
+      "url": "https://vivekchand.github.io/physical-ai-for-software-engineers/manipulation/",
+      "package": "No physical robot; use your existing computer for the toy labs",
+      "fit": "Start here; full Isaac Sim needs separately compatible compute"
+    },
+    {
+      "name": "SO-101 parts package (WowRobo)",
+      "price": 199,
+      "url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1?variant=46588630499545",
+      "evidence_url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1.js",
+      "package": "Package 1: printed parts and 12 servos; not the complete camera/control kit",
+      "fit": "DIY parts route; compare missing components before ordering"
+    },
+    {
+      "name": "SO-101 unassembled teleop kit (WowRobo)",
+      "price": 259,
+      "url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1?variant=46588630630617",
+      "evidence_url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1.js",
+      "package": "Package 2: one leader + one follower + one camera, unassembled",
+      "fit": "Low-cost assembly and demonstration learning"
+    },
+    {
+      "name": "SO-101 assembled teleop kit (WowRobo)",
+      "price": 299,
+      "url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1?variant=46588641607897",
+      "evidence_url": "https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1.js",
+      "package": "Package 3: one leader + one follower + one camera, assembled",
+      "fit": "Recommended starter shortlist for reducing assembly work"
+    },
+    {
+      "name": "MakerMods Maker Arm",
+      "price": 999,
+      "url": "https://www.makermods.ai/maker-arm",
+      "package": "One DIY kit; assembled version listed at $1,199; leader optional",
+      "fit": "A more substantial, modifiable arm; vendor lists new orders shipping in November"
+    },
+    {
+      "name": "AgileX PiPER",
+      "price": 1999,
+      "url": "https://global.agilex.ai/products/piper",
+      "evidence_url": "https://global.agilex.ai/products/piper.js",
+      "package": "One arm listing; confirm gripper, mounts, CAN interface, and cables in your quote",
+      "fit": "Research/manipulation route matching the PiPER family in the reference image"
+    },
+    {
+      "name": "MakerMods Metal Arm",
+      "price": 2499,
+      "url": "https://www.makermods.ai/metal-arm-buy",
+      "package": "One arm; listed shipping $249/arm; optional Star Arm leader $199 each",
+      "fit": "Machined-arm route; distinguish it from the cheaper Maker Arm"
+    },
+    {
+      "name": "I2RT YAM Standard",
+      "price": 2999,
+      "url": "https://doc.i2rt.com/products/yam",
+      "package": "Standard arm price in manufacturer docs; use i2rt.com for current purchase configuration",
+      "fit": "Research/data-collection ecosystem; leader and complete station are separate choices"
+    },
+    {
+      "name": "UFACTORY Lite 6",
+      "price": 2999,
+      "url": "https://www.shop.ufactory.cc/collections/lite-6",
+      "package": "Arm listing; confirm end-effector and accessories",
+      "fit": "SDK/ROS manipulation route with a larger total setup to budget"
+    },
+    {
+      "name": "UFACTORY xArm 7",
+      "price": 9999,
+      "url": "https://www.shop.ufactory.cc/collections/xarm",
+      "package": "Seven-axis arm listing; end-effector and workcell configuration separate",
+      "fit": "Higher-budget manipulation research; not needed for the core course"
+    },
+    {
+      "name": "Franka Research 3",
+      "price": null,
+      "url": "https://franka.de/franka-research-3",
+      "package": "Request a configuration-specific quotation; no public price verified here",
+      "fit": "Research platform; using its simulator asset does not require buying it"
+    }
+  ],
+  "bimanual_options": [
+    {
+      "name": "MakerMods Maker Arm Station",
+      "price": 2398,
+      "url": "https://www.makermods.ai/maker-arm-station",
+      "package": "Two Maker Arms, station/base, and three-camera setup; verify current box contents",
+      "fit": "A bimanual starting point; leaders not in this base price"
+    },
+    {
+      "name": "Maker Arm Station full teleop setup",
+      "price": 2796,
+      "url": "https://www.makermods.ai/maker-arm-station",
+      "package": "Station plus two Star Arm 102 leaders; computer separate",
+      "fit": "Two working arms plus two teaching arms; closer to a complete demonstration setup"
+    },
+    {
+      "name": "MakerMods Metal Arm Station",
+      "price": 4999,
+      "url": "https://www.makermods.ai/metal-arm-buy",
+      "package": "Two Metal Arms on one base; check cameras/leaders separately",
+      "fit": "The Metal Arm family in the reference image; heavier-budget bimanual work"
+    },
+    {
+      "name": "Metal Arm Station DAgger Kit",
+      "price": 9999,
+      "url": "https://www.makermods.ai/metal-arm-buy",
+      "package": "Four Metal Arms: two followers and two leaders, station base, center camera",
+      "fit": "Specialized demonstration/DAgger configuration; not equivalent to the $4,999 station"
+    }
+  ]
+}

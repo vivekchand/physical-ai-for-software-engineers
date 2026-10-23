@@ -8,7 +8,7 @@ The ROS bridge connects supported simulator interfaces with ROS. Your external n
 
 Use the reviewed Ubuntu 24.04/Jazzy combination or another explicitly documented configuration. Follow the selected release's ROS installation page to launch the simulator with the correct bridge settings. On Windows and other combinations, follow that platform's instructions rather than copying Linux environment overrides.
 
-Use an official ROS 2 robot tutorial scene. Begin by publishing state from the simulator, without adding a new control path.
+Use a supported manipulator tutorial scene with joint-state publication. Begin by observing joint state from the simulator, without adding a new control path.
 
 In a sourced external ROS terminal:
 
@@ -20,15 +20,15 @@ ros2 topic info /clock --verbose
 ros2 topic echo /clock --once
 ```
 
-Discover the actual odometry topic. If it is `/odom` with type `nav_msgs/msg/Odometry`:
+Discover the actual joint-state topic. If it is `/joint_states` with type `sensor_msgs/msg/JointState`:
 
 ```bash
-ros2 topic info /odom --verbose
-ros2 topic echo /odom --once
-python3 examples/ros2_observer.py --topic /odom
+ros2 topic info /joint_states --verbose
+ros2 topic echo /joint_states --once
+python3 examples/ros2_joint_observer.py --topic /joint_states
 ```
 
-The included observer subscribes to odometry and prints local JSONL. It records message state and its source frame/time; it does not send movement commands. It requires ROS 2 and a matching message publisher, so it is not exercised by the portable CI tests.
+The included joint observer prints local JSONL with joint names, reported positions/velocities/efforts, source time, and receipt time. It does not send movement commands or establish that the cube was grasped. The original odometry observer remains available for the optional mobile route. It requires ROS 2 and a matching message publisher, so it is not exercised by the portable CI tests.
 
 ## Debug in layers
 

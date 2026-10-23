@@ -1,38 +1,43 @@
-## Name the capability before adding a package
+## Make one pick-and-place workflow work
 
-Navigation coordinates a goal, localization, a representation of obstacles, planning, and execution. SLAM estimates motion and a map. Reconstruction creates a geometric representation. None alone means the robot can reliably complete a delivery.
+Our main task is an arm moving a cube into a tray. A feasible grasp configuration, a collision-aware path, a tracked trajectory, and a verified placement are separate achievements. Keep them visible as you integrate the system.
 
-Nav2 supplies ROS 2 navigation components. Isaac ROS offers accelerated capabilities that can participate in a larger graph. Visual SLAM estimates motion from visual inputs under its assumptions. nvblox reconstructs geometry from supported observations and pose information, with integrations relevant to navigation. A reconstructed scene is not automatically a correct traversability map.
+Start with the official [Franka pick-and-place example](https://docs.isaacsim.omniverse.nvidia.com/latest/examples/manipulation_franka_pick_place.html) for your installed Isaac Sim release. Use its supported scene, controller, and assets before substituting a learned policy or another arm.
 
-## One practical experiment
+## Inspect the phases
 
-Start with the official navigation example matching your Isaac Sim release. Use its supported robot and scene before changing sensors or combining third-party launch files.
+1. Establish the arm-base, end-effector, camera, cube, and target frames.
+2. Record joint state and the controller's reference or reported status where exposed.
+3. Separate approach, grasp, lift, transfer, place, release, and retreat.
+4. Compare a gripper-close request with suitable attachment/contact evidence.
+5. Verify the cube's final state in the tray after release, separately from controller completion.
 
-1. Inspect the graph and frame tree while the robot is stationary.
-2. Establish which node supplies global pose, local odometry, and obstacle information.
-3. Submit a goal using the example's supported UI or action interface in simulation.
-4. Record the goal status, path updates, state estimates, and terminal result.
-5. Change one obstacle and repeat, preserving the run identifiers.
+Simulator object state can be a reference for an experiment. It is different from what a camera-based estimator could know. Label both sources.
 
-Then choose **one** accelerated perception or mapping tutorial from Isaac ROS, such as visual SLAM or nvblox. Follow its own quickstart, input requirements, release tag, and supported GPU setup. Preserve the baseline run for comparison.
+## Change one thing
 
-## What to measure
+Move the cube, shift the tray, add a supported obstacle, or choose a target beyond the workspace. Preserve an unchanged baseline and a separate run ID for every variation. Explain whether failure arose in perception, transforms, IK, planning, grasp, execution, or observation.
 
-Compare successful completion rate, pose error when reference truth exists, input age, processing latency, and resource use. A faster individual node can leave end-to-end performance unchanged if another component dominates. Speed is also of little value if frames or calibration are wrong.
+For an extended integration, use the official [manipulator workflow](https://docs.isaacsim.omniverse.nvidia.com/latest/robot_setup_tutorials/tutorial_manipulator_workflow.html). Check the robot description, joint limits, collision geometry, and supported motion-generation interfaces. Match the exact release and package compatibility before adding Isaac ROS or cuMotion.
 
-Record dependency versions and conversions between CPU/GPU buffers. The release-5 documentation's buffer migration is a reminder to use the package's own release instructions rather than assume historical NITROS commands still apply.
+## From one arm to two
+
+A second arm introduces shared workspace, synchronized actions, handovers, and inter-arm collisions. Establish the single-arm outcome first, then add a bimanual extension such as one gripper holding a container while the other sorts objects. The Models field note explains why some WAM/VLA interfaces expect two arms. The Hardware field note distinguishes two working arms from a leader/follower pair.
+
+## Optional mobile comparison
+
+Localization and navigation remain useful for a mobile manipulator or delivery robot. Nav2 coordinates navigation; visual SLAM estimates motion/map information; nvblox supports reconstruction/mapping workflows. They do not replace the arm's grasp and execution logic. Explore these as a separate route when mobility is part of your task.
 
 ## Today's practice
 
-Create two mission reports: the unchanged navigation example and one deliberate perturbation. Explain whether the robot replanned, recovered, aborted, or failed to report an outcome. If you only have the laptop track, inspect the portable mission scenarios and label the graph-level/GPU steps pending.
+On a compatible GPU host, produce a baseline and one perturbed Franka run with scene version, frames, task phases, object outcome, and failure evidence. Otherwise run all four scenarios in `examples/pick_place.py` and explain the kinematic fixture's missing contact/dynamics. Mark GPU integration pending when it has not been executed.
 
 ## Checkpoint
 
-<details><summary>Does a visually detailed 3D reconstruction establish a usable navigation solution?</summary><p>No. Localization, collision representation, traversability, planning, controls, and timing must work together. Evaluate the complete mission and each interface's assumptions.</p></details>
+<details><summary>The arm reached its final joint target. Did pick-and-place succeed?</summary><p>Not necessarily. The cube may have been missed, slipped, or remained attached at the wrong place. Check the object state and release/placement criterion independently of arm motion completion.</p></details>
 
 ## Go deeper
 
-- [Nav2 documentation](https://docs.nav2.org/).
-- [Isaac ROS visual SLAM](https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html).
-- [Isaac ROS nvblox](https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html).
-- [PORA: Robot Localization](https://porabook.com/book/robot-localization/).
+- [NVIDIA Franka example](https://docs.isaacsim.omniverse.nvidia.com/latest/examples/manipulation_franka_pick_place.html).
+- [Manipulator workflow](https://docs.isaacsim.omniverse.nvidia.com/latest/robot_setup_tutorials/tutorial_manipulator_workflow.html).
+- [Nav2](https://docs.nav2.org/) and [Isaac ROS](https://nvidia-isaac-ros.github.io/) for the optional mobility route.

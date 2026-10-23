@@ -17,6 +17,10 @@
 | Frame | A coordinate reference used to give geometric quantities meaning. |
 | Ground truth | A reference treated as truth for a specific evaluation, with its own measurement limits. |
 | IMU | Inertial measurement unit, commonly reporting acceleration and angular motion. |
+| Inverse kinematics (IK) | Finding joint configurations for a requested endpoint pose under a chosen robot model. |
+| Forward kinematics | Computing endpoint/link poses from joint configurations. |
+| Leader / follower | A teaching device moved by a person and the robot following it; one pair is usually one working manipulator. |
+| Bimanual | Using two working arms, often requiring coordination and inter-arm collision handling. |
 | Inference | Computing outputs from a trained model. |
 | Isaac Lab | NVIDIA's robot-learning environment and workflow framework. |
 | Isaac ROS | NVIDIA's accelerated robot software packages and workflows integrated with ROS. |
@@ -44,5 +48,6 @@
 | Trajectory | Motion specified with time, often including state and input references. |
 | VLA | Vision-language-action model connecting multimodal inputs to a defined action representation. |
 | World model | A learned predictive representation of how aspects of the world develop. |
+| World-action model (WAM) | A policy architecture coupling action prediction with predictive world/video representations. |
 
 Use the daily lessons and their primary sources for assumptions, derivations, and product-specific definitions. These brief definitions are a starting vocabulary.

@@ -19,11 +19,12 @@ cd physical-ai-for-software-engineers
 python3 examples/control.py
 python3 examples/estimate.py
 python3 examples/mission.py --scenario delayed
+python3 examples/pick_place.py --scenario normal
 ```
 
 On Windows, use `py -3` in place of `python3` if that is your Python launcher. These examples use only the Python standard library. They write to stdout unless you explicitly request an output file.
 
-The course website itself is static. You do not need to install the website generator to run the labs or read the Markdown lessons on GitHub.
+The course website itself is static. You do not need to install the website generator to run the labs or read the Markdown lessons on GitHub. Start with the [pick-and-place task](manipulation.md). When you want physical equipment, the [hardware guide](hardware.md) compares dated package prices and one-arm versus bimanual setups. The [model guide](models.md) introduces Dream Labs and other VLA/WAM routes.
 
 ## The GPU track
 

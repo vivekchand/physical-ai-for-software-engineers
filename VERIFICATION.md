@@ -13,6 +13,13 @@ The repository's GitHub Actions workflow runs:
 The tests verify bounded commands and baseline tracking, delay effects, seeded
 filter behavior, synthetic event identity, cancellation versus motion evidence,
 unconfirmed disconnects, duplicate requests, and preservation of existing output.
+The manipulation tests also check forward/inverse kinematic agreement, unreachable
+targets, missed grasps, slips, and the distinction between a close request and placement.
+
+The hardware table is generated from `data/hardware.json`. It records dated supplier
+listings and package scope, not purchase/stock guarantees or independent hardware tests.
+Dream Labs and other model introductions are based on primary sources; no vendor API
+authentication, paid inference, observation uploads, or playground robot actions are tested.
 
 ## Source-reviewed reference exercises
 

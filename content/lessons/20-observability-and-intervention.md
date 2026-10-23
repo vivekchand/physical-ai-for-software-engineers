@@ -1,12 +1,12 @@
 ## Follow a claim to its evidence
 
-For our warehouse delivery, distinguish:
+For our pick-and-place arm, distinguish:
 
 | Claim | Evidence to look for |
 |---|---|
-| A person permitted the delivery | Scoped authorization record |
+| A person permitted this pick-and-place task | Scoped authorization record |
 | The robot accepted the mission | Goal acceptance from its supported interface |
-| Progress occurred | Fresh state or task feedback, with known meaning |
+| A grasp succeeded | Suitable object/contact evidence, separate from a gripper-close command |
 | Cancellation was requested | Actor, target, request identifier, and time |
 | The request was accepted | Matching acknowledgment |
 | The task ended | Terminal task status |
@@ -14,9 +14,11 @@ For our warehouse delivery, distinguish:
 
 An unknown result is useful information. Disconnection should produce “state unavailable” rather than preserve a stale green indicator. Correlation helps reconstruct events; it does not prove causation by itself.
 
-## Run the portable incident lab
+## Start with manipulation evidence
 
-From the repository root:
+Run `python3 examples/pick_place.py --scenario missed-grasp` and `python3 examples/pick_place.py --scenario slip`. Inspect the difference between gripper requests, attachment evidence, and final object position. These are synthetic rule-based fixtures, not contact simulations.
+
+For cancellation and connection behavior, keep the secondary mission fixture. From the repository root:
 
 ```bash
 python3 examples/mission.py --scenario normal --output normal.jsonl

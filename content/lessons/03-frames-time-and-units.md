@@ -6,17 +6,17 @@ For a planar robot, pose usually includes position and heading: `(x, y, theta)`.
 
 ## Transform the meaning
 
-Suppose the robot is at map position `(2, 3)` facing along the map's positive x-axis. A box one meter forward in the robot frame is at `(3, 3)` in the map. Rotate the robot by 90 degrees and the same local point becomes `(2, 4)`.
+Suppose a camera's origin is at `(0.10, 0.20)` in the arm-base frame and its planar axes align with that frame. A cube at camera coordinates `(0.20, 0.10)` maps to `(0.30, 0.30)`. Rotate the camera axes by 90 degrees while keeping the same translation and the same local point maps to `(0.00, 0.40)`. This is a simplified planar example; real camera optical frames have their own conventions.
 
 More generally:
 
 ```text
-point_in_map = rotation_map_from_robot × point_in_robot + translation
+point_in_arm_base = rotation_base_from_camera × point_in_camera + translation
 ```
 
-The transform must correspond to the measurement time. Using a current robot pose with an old camera image creates a geometrically inconsistent result.
+The transform must correspond to the measurement time. Using a current wrist-camera pose with an old image creates a geometrically inconsistent grasp target.
 
-ROS conventions distinguish frames such as `map`, `odom`, and `base_link`. In a common arrangement, `odom` provides locally continuous motion but can drift, while global localization corrections affect the relationship to `map`. Follow the specific robot's frame tree and published conventions.
+For an arm, inspect the base, links, end-effector, camera, object, and target frames. Names depend on the robot. For the optional mobile example, ROS conventions distinguish `map`, `odom`, and `base_link`: local odometry can drift while localization corrects its relationship to the global map. Follow the actual frame tree.
 
 ## Clocks are another coordinate system
 
@@ -26,10 +26,10 @@ Simulator resets can move simulated time backward. A recorder needs a run or epi
 
 ## Today's practice
 
-Calculate the box position for headings of 0, 90, and 180 degrees. Then sketch this record:
+Calculate the cube's arm-base coordinates for camera rotations of 0, 90, and 180 degrees. Then sketch this record:
 
 ```json
-{"run_id":"trial-01","frame_id":"map","position_m":[3,3,0],
+{"run_id":"trial-01","frame_id":"arm_base","position_m":[0.3,0.3,0.04],
  "source_time_s":12.5,"clock_domain":"simulation","received_at":"2026-10-23T10:00:00Z"}
 ```
 

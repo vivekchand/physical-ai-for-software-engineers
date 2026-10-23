@@ -42,10 +42,18 @@ From AA174A, prioritize lectures 1 (kinematics), 3 (tracking), 7 (sensors), and 
 - [Isaac GR00T](https://github.com/NVIDIA/Isaac-GR00T).
 - [Cosmos projects](https://github.com/nvidia-cosmos), [Newton](https://github.com/newton-physics/newton), and [Warp](https://github.com/NVIDIA/warp).
 
-## Additional model research
+## Manipulation, model research, and hardware
+
+- [Franka pick-and-place reference](https://docs.isaacsim.omniverse.nvidia.com/latest/examples/manipulation_franka_pick_place.html) and [NVIDIA manipulator workflow](https://docs.isaacsim.omniverse.nvidia.com/latest/robot_setup_tutorials/tutorial_manipulator_workflow.html).
+- [Dream Labs Dream-1](https://dreamlabs.ai/research/dream-1/) and [DreamZero](https://dreamzero0.github.io/).
+- [LeRobot](https://huggingface.co/docs/lerobot), including [SmolVLA](https://huggingface.co/docs/lerobot/smolvla) and the [ACT imitation baseline](https://huggingface.co/docs/lerobot/act).
+- [openpi](https://github.com/Physical-Intelligence/openpi), [π0.7 research](https://www.pi.website/blog/pi07), and the [Pi API announcement](https://www.pi.website/blog/api-beta).
+- [Gemini Robotics](https://deepmind.google/models/gemini-robotics/), with its distinct action and reasoning variants.
 
 - [OpenVLA](https://openvla.github.io/).
 - [Physical Intelligence: pi-zero](https://www.pi.website/blog/pi0).
+
+The [model field note](models.md) explains access and compatibility distinctions. The [hardware guide](hardware.md) links to the supplier pages behind each dated price; those are listings rather than independent hardware evaluations.
 
 ## ClawMetry and provenance
 

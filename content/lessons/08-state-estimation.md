@@ -1,6 +1,6 @@
 ## A robot maintains a belief
 
-The delivery robot cannot read its exact physical state from one perfect sensor. Wheel odometry drifts. Images can be ambiguous. Measurements arrive at different rates. State estimation combines a model and observations to maintain a useful belief about the state.
+The arm cannot read the cube's exact physical state from one perfect sensor. Joint encoders describe the mechanism under calibration assumptions; they do not prove the cube is attached. Camera views can be occluded during a grasp. Measurements arrive at different rates. State estimation combines models and observations into a useful belief.
 
 A basic filtering cycle has two steps:
 
@@ -13,7 +13,7 @@ For a scalar Kalman-style update, the gain depends on predicted variance and mea
 
 The Kalman filter is exact under linear-Gaussian assumptions. The extended Kalman filter linearizes nonlinear models locally. The unscented Kalman filter uses selected sample points to propagate an approximation. Particle filters maintain weighted state samples and can represent multiple distinct hypotheses.
 
-A Gaussian-shaped belief around one pose is not a good description when the robot might be in either of two identical aisles. The representation itself affects what uncertainty the system can express.
+A Gaussian-shaped belief around one object pose is not a good description when two identical cubes produce separate plausible targets. The representation itself affects what uncertainty the system can express.
 
 Localization estimates pose relative to a map. SLAM estimates the robot trajectory and map together. Sensor fusion combines information across sources; tracking estimates the changing state of other objects. Correlated sensors do not provide independent evidence merely because they arrive on different topics.
 

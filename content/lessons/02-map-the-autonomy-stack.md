@@ -1,9 +1,9 @@
 ## Follow the information
 
-For our delivery robot, a useful architecture is:
+For our pick-and-place arm, a useful architecture is:
 
 ```text
-cameras, lidar, encoders, IMU
+cameras, joint encoders, gripper/contact signals
              ↓
 perception + state estimation
              ↓
@@ -12,7 +12,7 @@ task decisions → motion planning → feedback control → actuators
              └──────────── changing world ───────────┘
 ```
 
-Perception interprets measurements: perhaps there is a pallet ahead. Estimation combines information over time: perhaps the robot is at this pose with this uncertainty. Decision-making chooses a task mode: wait, deliver, or recover. Planning proposes a route or motion. Control computes inputs that track that motion.
+Perception interprets measurements: the red cube appears at this image location. Estimation combines information into object and arm state with uncertainty. Decision-making chooses a phase: approach, grasp, lift, transfer, release, or recover. Planning proposes collision-aware arm motion. Control computes inputs that track it.
 
 The boundaries are useful even when a learned model combines several functions. Ask what inputs and outputs remain visible.
 
@@ -24,13 +24,14 @@ Distributed traces tell you which component ran. Robotic traces also need to exp
 
 ## Failure belongs somewhere
 
-Suppose the robot fails to reach dock B. The reason might be:
+Suppose the cube never reaches the tray. The reason might be:
 
 | Symptom | A possible origin | Useful evidence |
 |---|---|---|
-| No usable route | Planning | Planner status and obstacle map |
-| Route looks valid, motion drifts | Control or model mismatch | Reference, estimated state, commands |
-| Robot appears in the wrong aisle | Localization | Pose history, uncertainty, sensor residuals |
+| No feasible grasp configuration | IK or planning | Target pose, joint limits, collision geometry |
+| Arm motion drifts | Control or model mismatch | Reference, estimated joints, commands |
+| Gripper closes on empty space | Perception or transforms | Object pose, camera calibration, source time |
+| Cube falls during transfer | Grasp/contact or execution | Gripper state, object motion, contact evidence |
 | Nothing changes in the dashboard | Observation path | Heartbeats, freshness, connection status |
 
 These are hypotheses, not diagnoses. Several components can contribute to one failure.
