@@ -1,0 +1,23 @@
+[
+ {"day":1,"slug":"a-new-mental-model","title":"Your code meets the real world","summary":"Trade request-response thinking for feedback, uncertainty, and physical consequences.","week":1,"tag":"Foundations","minutes":60},
+ {"day":2,"slug":"map-the-autonomy-stack","title":"Read the autonomy stack","summary":"Follow a delivery robot from sensors to decisions to motion.","week":1,"tag":"Architecture","minutes":60},
+ {"day":3,"slug":"frames-time-and-units","title":"Frames, time, and units","summary":"Learn the three invisible contracts behind a believable robot state.","week":1,"tag":"Geometry","minutes":75},
+ {"day":4,"slug":"motion-and-dynamics","title":"Model a moving robot","summary":"Turn position, velocity, and steering into a small runnable model.","week":1,"tag":"Motion","minutes":75},
+ {"day":5,"slug":"planning-and-trajectories","title":"Find a path. Make it feasible.","summary":"Understand graph search, sampling, constraints, and time-parameterized motion.","week":1,"tag":"Planning","minutes":75},
+ {"day":6,"slug":"feedback-control","title":"Close the feedback loop","summary":"Tune a controller and see why delay and saturation matter.","week":1,"tag":"Interactive lab","minutes":90},
+ {"day":7,"slug":"perception","title":"See through a robot's sensors","summary":"Connect camera geometry, depth, detection, and calibration to failure modes.","week":1,"tag":"Perception","minutes":75},
+ {"day":8,"slug":"state-estimation","title":"Estimate what you cannot measure","summary":"Build intuition for filtering, uncertainty, localization, and SLAM.","week":2,"tag":"Estimation","minutes":90},
+ {"day":9,"slug":"ros2-first-nodes","title":"Speak ROS 2","summary":"Run your first nodes and inspect topics, services, and actions.","week":2,"tag":"ROS 2 lab","minutes":90},
+ {"day":10,"slug":"ros2-reliability","title":"Make the messages mean something","summary":"Work with transforms, QoS, simulated time, and replay.","week":2,"tag":"ROS 2 lab","minutes":90},
+ {"day":11,"slug":"nvidia-map","title":"Find your way around NVIDIA","summary":"Know when to reach for Isaac Sim, Lab, ROS, GR00T, Cosmos, and Jetson.","week":2,"tag":"Ecosystem map","minutes":60},
+ {"day":12,"slug":"isaac-sim-setup","title":"Get Isaac Sim running","summary":"Choose compatible hardware and versions, then prove a scene actually runs.","week":2,"tag":"GPU track","minutes":120},
+ {"day":13,"slug":"isaac-sim-ros2","title":"Bridge the simulated robot to ROS 2","summary":"Inspect live state, simulated clocks, and transport boundaries.","week":2,"tag":"GPU track","minutes":120},
+ {"day":14,"slug":"navigation-and-mapping","title":"Navigate, localize, and reconstruct","summary":"Connect Nav2, visual SLAM, and nvblox without mixing their responsibilities.","week":2,"tag":"Integration","minutes":120},
+ {"day":15,"slug":"decisions-and-rewards","title":"Choose actions over time","summary":"Compare state machines, dynamic programming, and reinforcement learning.","week":3,"tag":"Decision-making","minutes":75},
+ {"day":16,"slug":"isaac-lab","title":"Train and inspect an Isaac Lab policy","summary":"Run a small task, inspect checkpoints, and separate reward from success.","week":3,"tag":"GPU track","minutes":120},
+ {"day":17,"slug":"imitation-and-groot","title":"Learn from demonstrations","summary":"Understand behavior cloning, VLA models, GR00T, and action contracts.","week":3,"tag":"Robot learning","minutes":90},
+ {"day":18,"slug":"synthetic-data-and-cosmos","title":"Build better data and test worlds","summary":"Use randomization and world models to ask harder evaluation questions.","week":3,"tag":"Data & evaluation","minutes":90},
+ {"day":19,"slug":"deployment-and-jetson","title":"Bring a policy toward deployment","summary":"Profile inference, understand Jetson, and make the sim-to-real gap explicit.","week":3,"tag":"Deployment","minutes":90},
+ {"day":20,"slug":"observability-and-intervention","title":"Make behavior inspectable","summary":"Connect intent, authorization, commands, and evidence of physical outcomes.","week":3,"tag":"Observability lab","minutes":90},
+ {"day":21,"slug":"capstone","title":"Build it. Break it. Explain it.","summary":"Publish a reproducible mission report and defend what your evidence proves.","week":3,"tag":"Capstone","minutes":150}
+]

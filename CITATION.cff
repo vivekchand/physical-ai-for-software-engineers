@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: Please cite this guide if you adapt its original material.
+title: Physical AI for Software Engineers
+type: book
+authors:
+  - family-names: Chand
+    given-names: Vivek
+url: https://vivekchand.github.io/physical-ai-for-software-engineers/
+repository-code: https://github.com/vivekchand/physical-ai-for-software-engineers
+date-released: 2026-10-23
+license: CC-BY-4.0

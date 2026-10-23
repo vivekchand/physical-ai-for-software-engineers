@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Build readable, searchable static pages from the original Markdown chapters."""
+import argparse
+import html
+import json
+import math
+from pathlib import Path
+import re
+import shutil
+from string import Template
+import markdown
+
+ROOT = Path(__file__).resolve().parents[1]
+REPO = "https://github.com/vivekchand/physical-ai-for-software-engineers"
+ORIGIN = "https://vivekchand.github.io"
+
+
+def render_md(text, base):
+    # One placeholder keeps Markdown readable in GitHub and portable in a project site.
+    text = text.replace("{{base}}", base)
+    engine = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "admonition", "attr_list"])
+    body = engine.convert(text)
+    return body, engine.toc
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--base-path", default="")
+    parser.add_argument("--output", default="dist")
+    args = parser.parse_args()
+    base = "/" + args.base_path.strip("/") if args.base_path.strip("/") else ""
+    out = ROOT / args.output
+    if out.resolve() == ROOT or ROOT not in out.resolve().parents:
+        parser.error("Output must be a subdirectory of the project")
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+    shutil.copytree(ROOT / "assets", out / "assets")
+    shutil.copytree(ROOT / "examples", out / "examples", ignore=shutil.ignore_patterns("__pycache__"))
+    curriculum = json.loads((ROOT / "curriculum.json").read_text())
+    shell = Template((ROOT / "templates/base.html").read_text())
+    search = []
+    urls = []
+
+    def page(path, title, description, content, active="", toc="", day="", source=""):
+        dest = out / path
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        nav = []
+        for week, label in [(1, "01 / Understand the robot"), (2, "02 / Build the system"), (3, "03 / Learn, deploy, observe")]:
+            nav.append(f'<p class="nav-group">{label}</p>')
+            for item in curriculum:
+                if item["week"] != week:
+                    continue
+                cls = ' class="active" aria-current="page"' if active == item["slug"] else ""
+                nav.append(f'<a{cls} data-day-link="{item["day"]}" href="{base}/days/{item["slug"]}/"><span class="day-num">{item["day"]:02}</span><span>{html.escape(item["title"])}</span><span class="nav-check" aria-hidden="true"></span></a>')
+        canonical = f"{ORIGIN}{base}/" + (path[:-10] if path.endswith("index.html") else path)
+        result = shell.substitute(base=base, title=html.escape(title), description=html.escape(description, quote=True),
+            canonical=canonical, content=content, navigation="".join(nav), toc=toc, day=day,
+            repo=REPO, source=source, body_class="home-page" if not path.startswith("days/") else "lesson-page")
+        dest.write_text(result)
+        urls.append(canonical)
+
+    home = (ROOT / "templates/home.html").read_text().replace("{{base}}", base)
+    weeks = []
+    for week, title, subtitle in [(1, "Understand the robot", "Build intuition before adding tools."), (2, "Build the system", "ROS 2, NVIDIA Isaac, and your first integration."), (3, "Learn, deploy, observe", "Policies, data, operational evidence, and a capstone.")]:
+        rows = []
+        for item in curriculum:
+            if item["week"] == week:
+                rows.append(f'''<a class="curriculum-row" href="{base}/days/{item['slug']}/" data-course-day="{item['day']}">
+                  <span class="row-day">{item['day']:02}</span><span class="row-copy"><strong>{html.escape(item['title'])}</strong><span>{html.escape(item['summary'])}</span></span>
+                  <span class="row-tag">{html.escape(item['tag'])}</span><span class="row-arrow" aria-hidden="true">↗</span></a>''')
+        weeks.append(f'<section class="week" id="week-{week}"><div class="week-heading"><span class="eyebrow">WEEK {week:02}</span><h3>{title}</h3><p>{subtitle}</p></div><div class="week-lessons">{"".join(rows)}</div></section>')
+    page("index.html", "Physical AI for Software Engineers", "An open, practical 21-day field guide to robotics, ROS 2, NVIDIA Isaac, and physical AI. Original lessons, runnable labs, and a capstone.", home.replace("{{curriculum}}", "".join(weeks)))
+
+    for i, item in enumerate(curriculum):
+        source = f"content/lessons/{item['day']:02}-{item['slug']}.md"
+        text = (ROOT / source).read_text()
+        body, toc = render_md(text, base)
+        words = len(re.findall(r"\b\w+\b", re.sub(r"<[^>]*>", " ", body)))
+        previous = curriculum[i-1] if i else None
+        following = curriculum[i+1] if i+1 < len(curriculum) else None
+        prev_link = f'<a href="{base}/days/{previous["slug"]}/"><small>← PREVIOUS</small>{html.escape(previous["title"])}</a>' if previous else f'<a href="{base}/"><small>← THE GUIDE</small>All 21 days</a>'
+        next_link = f'<a href="{base}/days/{following["slug"]}/"><small>NEXT →</small>{html.escape(following["title"])}</a>' if following else f'<a href="{base}/roadmap/"><small>KEEP GOING →</small>Your next 90 days</a>'
+        content = f'''<div class="lesson-header"><a class="breadcrumb" href="{base}/#learning-path">The 21-day path</a><p class="eyebrow">DAY {item['day']:02} / WEEK {item['week']:02} / {html.escape(item['tag'].upper())}</p><h1>{html.escape(item['title'])}</h1><p class="lesson-deck">{html.escape(item['summary'])}</p><div class="lesson-meta"><span>{max(2, math.ceil(words/180))} min read</span><span>Plan {item['minutes']} min with practice</span><span>Original, open material</span></div></div>
+        <details class="reader-toc"><summary>On this day</summary>{toc}</details><div class="reader-layout"><article class="prose" id="lesson-content">{body}
+        <div class="completion-box"><div><strong>Can you explain it without the page?</strong><p>Try the checkpoint first. Your progress stays in this browser.</p></div><button class="button primary" data-complete="{item['day']}" aria-pressed="false">Mark day complete</button></div><p class="edit-link"><a href="{REPO}/edit/main/{source}">Improve this lesson on GitHub ↗</a></p><nav class="chapter-nav" aria-label="Previous and next lesson">{prev_link}{next_link}</nav></article></div>'''
+        page(f"days/{item['slug']}/index.html", item["title"] + " · Day " + str(item["day"]), item["summary"], content, item["slug"], toc, str(item["day"]), source)
+        plain = html.unescape(re.sub(r"<[^>]+>", " ", body))
+        search.append({"title":item["title"], "day":item["day"], "url":f"{base}/days/{item['slug']}/", "text":re.sub(r"\s+", " ", plain)})
+
+    for slug, title, deck in [("setup", "Choose your starting setup", "A laptop path for everyone, a GPU path when you are ready."), ("nvidia", "The NVIDIA robotics map", "A source-linked map of what each tool is for, and what to install first."), ("resources", "Go deeper, deliberately", "The original references behind the guide, organized by the question you are trying to answer."), ("glossary", "A working vocabulary", "Plain-language definitions you can use in an engineering conversation."), ("roadmap", "After day 21", "Turn a first project into deeper engineering competence."), ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure.")]:
+        source = f"content/pages/{slug}.md"
+        text = (ROOT/source).read_text()
+        body, toc = render_md(text, base)
+        content = f'<div class="lesson-header"><p class="eyebrow">FIELD NOTES / {slug.upper()}</p><h1>{title}</h1><p class="lesson-deck">{deck}</p></div><article class="prose">{body}</article>'
+        page(f"{slug}/index.html", title, deck, content, toc=toc, source=source)
+        search.append({"title":title,"day":None,"url":f"{base}/{slug}/", "text":re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))})
+    chapters, manuscript = [], ["# Physical AI for Software Engineers\n\nAn original, open 21-day field guide.\n\nText: CC BY 4.0, Vivek Chand and contributors. Code: MIT. External sources retain their own licenses.\n\nDocumentation reviewed 23 October 2026. GPU reference exercises are not independently executed by this project's CPU tests.\n"]
+    contents = []
+    for item in curriculum:
+        raw = (ROOT/f"content/lessons/{item['day']:02}-{item['slug']}.md").read_text()
+        body, _ = render_md(raw, base)
+        body = re.sub(r'id="([^"]+)"', lambda m: f'id="day-{item["day"]}-{m[1]}"', body)
+        body = re.sub(r'href="#([^"]+)"', lambda m: f'href="#day-{item["day"]}-{m[1]}"', body)
+        body = body.replace('<h3', '<h4').replace('</h3>', '</h4>').replace('<h2', '<h3').replace('</h2>', '</h3>')
+        chapters.append(f'<section class="book-chapter" id="day-{item["day"]}"><p class="eyebrow">DAY {item["day"]:02}</p><h2>{html.escape(item["title"])}</h2>{body}</section>')
+        contents.append(f'<li><a href="#day-{item["day"]}">{item["day"]:02}. {html.escape(item["title"])}</a></li>')
+        manuscript.append(f'\n\n# Day {item["day"]:02}: {item["title"]}\n\n{raw}')
+    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 days in one place. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
+    page("book/index.html", "The reading edition", "All 21 original lessons in a printable reading edition.", book)
+    (out/"book.md").write_text("\n".join(manuscript))
+    page("404.html", "Page not found", "Find your way back to the field guide.", f'<div class="lesson-header"><p class="eyebrow">404 / OFF THE MAP</p><h1>Let’s find your way back.</h1><p class="lesson-deck">This page has moved or does not exist.</p><a class="button primary" href="{base}/">Open the learning path →</a></div>')
+    (out/"search-index.json").write_text(json.dumps(search, ensure_ascii=False))
+    (out/".nojekyll").touch()
+    (out/"robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {ORIGIN}{base}/sitemap.xml\n")
+    (out/"sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{html.escape(u)}</loc></url>' for u in urls if not u.endswith('404.html')) + '</urlset>')
+    print(f"Built {len(urls)} pages and {len(search)} search entries into {out}")
+
+
+if __name__ == "__main__":
+    main()

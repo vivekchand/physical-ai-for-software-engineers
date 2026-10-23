@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="$description">
+  <meta name="theme-color" content="#111d30">
+  <meta property="og:title" content="$title">
+  <meta property="og:description" content="$description">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="$canonical">
+  <title>$title | An open field guide</title>
+  <link rel="canonical" href="$canonical">
+  <link rel="icon" href="$base/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="$base/assets/style.css">
+  <script src="$base/assets/app.js" defer></script>
+</head>
+<body class="$body_class" data-base="$base" data-day="$day">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <aside class="sidebar" id="course-nav" aria-label="Course navigation">
+    <a class="brand" href="$base/" aria-label="Physical AI for Software Engineers, home"><span class="brand-mark" aria-hidden="true">p<span>↗</span></span><span>physical ai<span class="brand-sub">FOR SOFTWARE ENGINEERS</span></span></a>
+    <div class="sidebar-intro"><span class="edition">THE OPEN FIELD GUIDE</span><p>From software to<br>systems that move.</p></div>
+    <div class="course-progress"><div><span>Your field notes</span><span data-progress-label>0 / 21</span></div><progress max="21" value="0" aria-label="Completed days" data-progress></progress></div>
+    <nav class="lesson-links" aria-label="Daily lessons">$navigation</nav>
+    <div class="sidebar-bottom"><a href="$repo" target="_blank" rel="noopener">Open source on GitHub ↗</a><span>Made to learn. Built to share.</span></div>
+  </aside>
+  <div class="site-shell">
+    <header class="topbar"><button class="menu-toggle" aria-controls="course-nav" aria-expanded="false" aria-label="Toggle course navigation">☰</button><a class="topbar-title" href="$base/">A practical path into physical AI</a><nav aria-label="Resources"><a href="$base/setup/">Setup</a><a href="$base/nvidia/">NVIDIA map</a><a href="$base/labs/">Labs</a><button class="search-trigger" aria-haspopup="dialog"><span>Search</span><kbd>⌘ K</kbd></button></nav></header>
+    <main id="main" tabindex="-1">$content</main>
+    <footer class="footer"><div><strong>Knowledge should be easy to enter.</strong><p>Original lessons by Vivek Chand, with contributions welcome.</p></div><div><a href="$base/resources/">Sources & credits</a><a href="$base/book/">Reading edition</a><a href="$base/glossary/">Glossary</a><a href="$repo/blob/main/CONTRIBUTING.md">Contribute ↗</a></div><p class="footer-note">Text: CC BY 4.0. Code: MIT. Independent educational project. No affiliation with NVIDIA, ROS, Stanford, or PORA. Simulated examples do not establish hardware safety or compatibility.</p></footer>
+  </div>
+  <dialog id="search-dialog" aria-labelledby="search-title"><div class="search-heading"><h2 id="search-title">Find a concept</h2><button class="search-close" aria-label="Close search">Esc</button></div><label class="sr-only" for="search-input">Search lessons and field notes</label><input id="search-input" type="search" placeholder="Try “Isaac”, “uncertainty”, or “ROS 2”…" autocomplete="off"><p class="search-status" aria-live="polite">Search all 21 days and field notes.</p><div class="search-results"></div></dialog>
+  <noscript><p class="noscript-note">All lessons work without JavaScript. Search, local progress, and the interactive lab need JavaScript.</p></noscript>
+</body>
+</html>
