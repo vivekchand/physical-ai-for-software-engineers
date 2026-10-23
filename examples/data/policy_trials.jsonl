@@ -1,0 +1,12 @@
+{"attempt_id":"b-n-1","policy":"baseline-v1","condition":"nominal","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":30}
+{"attempt_id":"b-n-2","policy":"baseline-v1","condition":"nominal","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":30}
+{"attempt_id":"b-n-3","policy":"baseline-v1","condition":"nominal","evidence":"synthetic","outcome":"failed","intervened":false,"elapsed_s":30}
+{"attempt_id":"c-n-1","policy":"candidate-v1","condition":"nominal","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":20}
+{"attempt_id":"c-n-2","policy":"candidate-v1","condition":"nominal","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":20}
+{"attempt_id":"c-n-3","policy":"candidate-v1","condition":"nominal","evidence":"synthetic","outcome":"placed","intervened":true,"elapsed_s":20}
+{"attempt_id":"b-s-1","policy":"baseline-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":40}
+{"attempt_id":"b-s-2","policy":"baseline-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":40}
+{"attempt_id":"b-s-3","policy":"baseline-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"failed","intervened":false,"elapsed_s":40}
+{"attempt_id":"c-s-1","policy":"candidate-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"placed","intervened":false,"elapsed_s":25}
+{"attempt_id":"c-s-2","policy":"candidate-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"failed","intervened":false,"elapsed_s":25}
+{"attempt_id":"c-s-3","policy":"candidate-v1","condition":"shifted-tray","evidence":"synthetic","outcome":"unconfirmed","intervened":false,"elapsed_s":25}

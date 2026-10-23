@@ -17,10 +17,11 @@ ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capsto
 ## What you can finish with
 
 - A working mental model of perception, estimation, planning, control, and learning.
-- Four portable experiments covering feedback, noisy measurements, mission evidence, and pick-and-place kinematics.
+- Five portable experiments covering feedback, noisy measurements, mission evidence, pick-and-place kinematics, and evaluation reporting.
 - A red-cube-to-tray arm task throughout the core, with a bimanual extension.
 - A source-linked introduction to Dream-1, VLAs/WAMs, and dated hardware buying options.
 - Source-reviewed ROS 2, Isaac Sim, and Isaac Lab reference exercises.
+- Optional deep dives on learning/datasets, cloud GPU setup, sim-to-real evaluation, and pilot economics.
 - An environment manifest, failure investigations, and a reproducible project report.
 - Original Markdown chapters that can evolve into a longer book.
 
@@ -78,6 +79,7 @@ python3 examples/control.py --gain 2 --delay-steps 0
 python3 examples/estimate.py --seed 7
 python3 examples/mission.py --scenario delayed
 python3 examples/pick_place.py --scenario normal
+python3 examples/evaluate.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -90,6 +92,19 @@ The arm toy solves one branch of two-link planar IK and uses a synthetic grasp r
 It does not simulate contact, vertical lifting, a specific purchased arm, or a VLA.
 Dream Labs/API introductions are source-reviewed; no API credentials, purchases,
 uploads, or remote robot actions are required to read this guide or run its toy labs.
+
+## Go deeper without extending the 21-day core
+
+| Topic | Use alongside | Practical artifact |
+|---|---|---|
+| [Robot learning and datasets](content/pages/robot-learning.md) | Days 2, 16–17 | Learning plan and observation/action contract |
+| [Cloud Isaac lab with Brev](content/pages/cloud-lab.md) | Days 12 and 16 | Host manifest, small experiment, exported results |
+| [Evaluation and sim-to-real](content/pages/evaluation.md) | Days 18–21 | Condition-level report with interventions and unknowns |
+| [Applications and costs](content/pages/applications.md) | Days 1 and 21 | Bounded pilot decision and comparable cost calculation |
+
+These field notes are included in search and the printable/Markdown reading edition.
+The [sources page](content/pages/resources.md) credits the additional Udemy course
+reviewed during this refinement and links the primary technical references.
 
 ## NVIDIA and ROS version policy
 

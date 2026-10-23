@@ -20,6 +20,7 @@ python3 examples/control.py
 python3 examples/estimate.py
 python3 examples/mission.py --scenario delayed
 python3 examples/pick_place.py --scenario normal
+python3 examples/evaluate.py
 ```
 
 On Windows, use `py -3` in place of `python3` if that is your Python launcher. These examples use only the Python standard library. They write to stdout unless you explicitly request an output file.
@@ -41,6 +42,8 @@ The course website itself is static. You do not need to install the website gene
 Use the [cross-product matrix](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/compatibility.html), plus the selected Isaac ROS release's compatibility guidance. Do not infer a supported pairing solely from matching “latest” labels.
 
 The reviewed Isaac Sim x86 requirements list 32 GB RAM, an RTX 4080/16 GB VRAM minimum class, and supported Linux/Windows configurations. Larger workloads need more. Isaac Sim excludes GPUs without RT cores, including A100/H100. Training/model workloads have their own rules. Run the [compatibility checker](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/requirements.html) on the intended simulator host.
+
+For a remote setup, the [cloud Isaac lab](cloud-lab.md) walks through workload selection, Brev configuration, host checks, a small physics experiment, and exporting results before stopping the instance. Use the exact software revision installed by the launchable; a tutorial recorded with an older release needs that release's commands.
 
 ## Keep a small environment manifest
 

@@ -12,6 +12,8 @@ Training workloads and scene complexity can require substantially more resources
 
 ## First successful run
 
+Using a Mac or a laptop without a suitable GPU? Follow the [cloud Isaac lab](../pages/cloud-lab.md) for a Brev-oriented session plan, host checks, streaming diagnostics, and resource shutdown. It also includes a cube-and-floor physics check before adding the arm. The operating system and GPU requirements apply to the remote host.
+
 Follow the workstation or Linux container procedure linked below for your selected release. Accept applicable vendor licenses yourself. Keep the simulator's Python environment separate from the course site's Python environment.
 
 On a supported Linux workstation installation, launch from its extracted installation directory:

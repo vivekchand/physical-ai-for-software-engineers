@@ -14,6 +14,16 @@ Keep modular interfaces, reproducible tests, version control, observability, and
 
 Automation can work in a carefully arranged environment. Autonomy involves choosing actions as circumstances change. Physical AI adds learned perception, reasoning, or action policies to embodied systems. These categories overlap; none automatically implies general intelligence or reliable operation everywhere.
 
+## Three ways to move the same cube
+
+| System | How it chooses an action | What happens when the cube moves? |
+|---|---|---|
+| Fixed sequence | Recorded coordinates | The grasp can miss |
+| Perception, planning, and feedback | Updated object pose and an explicit controller | It can replan within its modeled limits |
+| Learned policy | A trained observation-to-action mapping | It may adapt within its learned coverage; test it |
+
+Classical robotics includes sensing, feedback, optimization, and adaptation. Physical AI is broader than VLAs. ROS 2 can connect any of these approaches; using it does not determine whether behavior is scripted or learned.
+
 ## One running example
 
 Throughout this guide, a tabletop arm puts a red cube in a tray. It must locate the cube, transform the pose into the arm's frame, reach a grasp, close the gripper, lift, transfer, release, and verify placement. A person can request an interruption. We will keep asking what each subsystem actually knows.
@@ -32,6 +42,8 @@ Write a one-page mission specification:
 4. Who can authorize the task, and who owns the machine's local control?
 
 Save it as `mission.md`. Revisit it on day 21. Plan about 60 minutes including the exercise; the short reading is only the beginning.
+
+Add one changed-cube-position scenario and predict how each approach above could fail. The optional [applications guide](../pages/applications.md) helps turn the mission into a useful pilot.
 
 ## Checkpoint
 

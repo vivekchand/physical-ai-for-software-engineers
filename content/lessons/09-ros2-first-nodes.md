@@ -2,6 +2,8 @@
 
 ROS 2 provides communication and tooling for robot software. A node is a logical participant with publishers, subscribers, services, and other interfaces. Multiple nodes can share a process; do not equate node identity with operating-system process identity.
 
+Despite its name, ROS 2 does not replace the host operating system. It is not a VLA or a learning algorithm, and installing it does not by itself establish real-time control guarantees.
+
 Topics carry streams such as camera images or odometry. Services support request/response interactions. Actions support longer-running goals with feedback, results, and cancellation requests. An action's canceled state is a software task outcome, not a measurement of physical stopping.
 
 ## Start on a supported environment

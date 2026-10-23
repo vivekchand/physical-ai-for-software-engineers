@@ -21,6 +21,12 @@ Batching may improve throughput while increasing delay. A server-style optimizat
 
 ## Before physical trials
 
+### Close the sim-to-real loop
+
+Record mismatches in appearance, camera calibration, contact/friction, actuator response, and observation delay. Change one variable at a time before testing realistic combinations. A digital scene becomes useful for transfer when its relevant behavior is checked against the intended system.
+
+Use the [evaluation test matrix](../pages/evaluation.md#a-small-sim-to-real-test-matrix) to plan those comparisons. Bring measured failures back into the next dataset or simulator revision, then reevaluate a frozen candidate before deployment. Logging and observability support this loop; they do not replace the local controller.
+
 Work with the manufacturer or responsible integrator on one bounded, supervised workflow. Establish robot model and firmware, supported command semantics, local safety ownership, recovery behavior, operating limits, and test conditions. A software stop request is not a safety-rated emergency stop.
 
 The guide teaches concepts and simulation exercises; it does not certify a deployment or provide a complete safety-engineering process.

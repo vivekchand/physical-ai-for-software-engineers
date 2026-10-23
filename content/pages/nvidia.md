@@ -47,8 +47,15 @@ Use [Isaac Lab](https://isaac-sim.github.io/IsaacLab/), [GR00T](https://github.c
 | TensorRT | Inference optimization on supported targets | After a correct baseline and representative latency measurement |
 | Triton | Inference serving | When serving requirements justify it |
 | OSMO | Workflow orchestration across compute resources | When training/data/evaluation jobs exceed a simple local workflow |
+| Brev | Provisioning reproducible GPU development environments | When you need a compatible remote host rather than a local workstation |
 
 Start with [Jetson resources](https://developer.nvidia.com/embedded-computing), [TensorRT docs](https://docs.nvidia.com/deeplearning/tensorrt/latest/), and [OSMO](https://github.com/NVIDIA/OSMO). A pipeline can include all of these and still fail because the camera is miscalibrated. Keep task correctness visible.
+
+## Follow one artifact through the stack
+
+Our arm produces episodes → a training job produces a checkpoint → evaluation produces a report → deployment runs a selected version. NVIDIA's [three-computer overview](https://www.nvidia.com/en-us/industries/robotics/) separates training, simulation, and robot-side execution. These roles can share a machine for small experiments.
+
+Read the [learning guide](robot-learning.md) for methods and dataset contracts, the [cloud lab](cloud-lab.md) for Brev setup, and the [evaluation guide](evaluation.md) for the test gate between a checkpoint and deployment.
 
 ## The reviewed version snapshot
 
