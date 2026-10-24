@@ -34,7 +34,7 @@ The included joint observer prints local JSONL with joint names, reported positi
 
 If nothing appears, check whether simulation is playing and the bridge started. Then inspect ROS domain, middleware, discovery/network settings, topic names, and QoS. Restart components deliberately after changing middleware settings. Keep a record of which adjustment changed the result.
 
-## Today's practice
+## Practice
 
 Record a short state trace. Pause the simulator and verify the source clock and samples behave as expected. Disconnect your observer and confirm that the simulator continues under its own control. Save the graph, message type, clock domain, and the observer's limits.
 

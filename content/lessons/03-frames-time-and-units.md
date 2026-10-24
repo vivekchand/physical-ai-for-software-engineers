@@ -24,7 +24,7 @@ Use simulated time consistently within a simulated graph. Keep wall-clock receip
 
 Simulator resets can move simulated time backward. A recorder needs a run or episode identifier so two distinct episodes do not appear to overlap.
 
-## Today's practice
+## Practice
 
 Calculate the cube's arm-base coordinates for camera rotations of 0, 90, and 180 degrees. Then sketch this record:
 

@@ -2,7 +2,7 @@
 
 **Learn robotics, ROS 2, and NVIDIA Isaac by building a pick-and-place robot.**
 
-An original, open 21-day field guide for software engineers entering robotics and
+An original, open-source, self-paced guide for software engineers entering robotics and
 physical AI. Connect theory from primary references such as PORA to practical
 ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capstone.
 
@@ -25,16 +25,17 @@ ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capsto
 - An environment manifest, failure investigations, and a reproducible project report.
 - Original Markdown chapters that can evolve into a longer book.
 
-Plan 60–120 minutes most days, with a longer final project. This is a starting path;
-expertise grows through implementation, evaluation, and supervised hardware work.
+Work at your own pace. Follow the lessons in order, pause for the experiments,
+and revisit concepts as you build. Expertise grows through implementation,
+evaluation, and supervised hardware work.
 You can read the core and run the included toy labs without an NVIDIA GPU.
 The complete GPU route requires compatible hardware and additional setup time.
 
-## The 21-day path
+## The learning path
 
-### Week 1: understand the robot
+### Part 1: understand the robot
 
-| Day | Lesson |
+| # | Lesson |
 |---|---|
 | 01 | [Your code meets the real world](content/lessons/01-a-new-mental-model.md) |
 | 02 | [Read the autonomy stack](content/lessons/02-map-the-autonomy-stack.md) |
@@ -44,9 +45,9 @@ The complete GPU route requires compatible hardware and additional setup time.
 | 06 | [Close the feedback loop](content/lessons/06-feedback-control.md) |
 | 07 | [See through a robot's sensors](content/lessons/07-perception.md) |
 
-### Week 2: build the system
+### Part 2: build the system
 
-| Day | Lesson |
+| # | Lesson |
 |---|---|
 | 08 | [Estimate what you cannot measure](content/lessons/08-state-estimation.md) |
 | 09 | [Speak ROS 2](content/lessons/09-ros2-first-nodes.md) |
@@ -56,9 +57,9 @@ The complete GPU route requires compatible hardware and additional setup time.
 | 13 | [Bridge the simulated robot to ROS 2](content/lessons/13-isaac-sim-ros2.md) |
 | 14 | [Plan a grasp. Place the cube.](content/lessons/14-navigation-and-mapping.md) |
 
-### Week 3: learn, deploy, observe
+### Part 3: learn, deploy, observe
 
-| Day | Lesson |
+| # | Lesson |
 |---|---|
 | 15 | [Choose actions over time](content/lessons/15-decisions-and-rewards.md) |
 | 16 | [Train and inspect an Isaac Lab policy](content/lessons/16-isaac-lab.md) |
@@ -93,14 +94,14 @@ It does not simulate contact, vertical lifting, a specific purchased arm, or a V
 Dream Labs/API introductions are source-reviewed; no API credentials, purchases,
 uploads, or remote robot actions are required to read this guide or run its toy labs.
 
-## Go deeper without extending the 21-day core
+## Go deeper when you are ready
 
 | Topic | Use alongside | Practical artifact |
 |---|---|---|
-| [Robot learning and datasets](content/pages/robot-learning.md) | Days 2, 16–17 | Learning plan and observation/action contract |
-| [Cloud Isaac lab with Brev](content/pages/cloud-lab.md) | Days 12 and 16 | Host manifest, small experiment, exported results |
-| [Evaluation and sim-to-real](content/pages/evaluation.md) | Days 18–21 | Condition-level report with interventions and unknowns |
-| [Applications and costs](content/pages/applications.md) | Days 1 and 21 | Bounded pilot decision and comparable cost calculation |
+| [Robot learning and datasets](content/pages/robot-learning.md) | Lessons 2, 16–17 | Learning plan and observation/action contract |
+| [Cloud Isaac lab with Brev](content/pages/cloud-lab.md) | Lessons 12 and 16 | Host manifest, small experiment, exported results |
+| [Evaluation and sim-to-real](content/pages/evaluation.md) | Lessons 18–21 | Condition-level report with interventions and unknowns |
+| [Applications and costs](content/pages/applications.md) | Lessons 1 and 21 | Bounded pilot decision and comparable cost calculation |
 
 These field notes are included in search and the printable/Markdown reading edition.
 The [sources page](content/pages/resources.md) credits the additional Udemy course

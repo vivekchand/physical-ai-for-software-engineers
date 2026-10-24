@@ -28,7 +28,7 @@ A second arm introduces shared workspace, synchronized actions, handovers, and i
 
 Localization and navigation remain useful for a mobile manipulator or delivery robot. Nav2 coordinates navigation; visual SLAM estimates motion/map information; nvblox supports reconstruction/mapping workflows. They do not replace the arm's grasp and execution logic. Explore these as a separate route when mobility is part of your task.
 
-## Today's practice
+## Practice
 
 On a compatible GPU host, produce a baseline and one perturbed Franka run with scene version, frames, task phases, object outcome, and failure evidence. Otherwise run all four scenarios in `examples/pick_place.py` and explain the kinematic fixture's missing contact/dynamics. Mark GPU integration pending when it has not been executed.
 

@@ -6,7 +6,7 @@ Read the lesson, attempt its exercise, then consult the primary source for a con
 
 [Principles of Robot Autonomy](https://porabook.com/) is by Daniele Gammelli, Joseph Lorenzetti, Katie Luo, Gioele Zardini, and Marco Pavone. The official site provides the book, exercises, and lecture recordings. This project is an independent learning companion; it does not reproduce the book, its figures, or its videos and is not affiliated with its authors or institutions.
 
-| Guide days | PORA material | Focus |
+| Guide lessons | PORA material | Focus |
 |---|---|---|
 | 1–2 | Preface and Software | Integrated autonomy and software components |
 | 3–4 | Chapter 1; geometric foundations in chapter 6 | State, motion, coordinates, calibration |
@@ -70,7 +70,7 @@ The practical extensions are [robot learning](robot-learning.md), [cloud Isaac s
 
 ## ClawMetry and provenance
 
-[ClawMetry's physical AI page](https://clawmetry.com/physical-ai) describes a proposed integration/partnership track. It informs the observation-boundary discussion on day 20; the course does not claim those robot adapters are shipped.
+[ClawMetry's physical AI page](https://clawmetry.com/physical-ai) describes a proposed integration/partnership track. It informs the observation-boundary discussion on lesson 20; the course does not claim those robot adapters are shipped.
 
 Vivek Chand started this guide from the perspective of a software engineer entering physical AI while building ClawMetry. Initial drafting and site implementation used AI assistance. Technical corrections and independently reproduced workflows are welcome. The primary sources remain authoritative for their own systems.
 

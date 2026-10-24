@@ -50,4 +50,4 @@
 | World model | A learned predictive representation of how aspects of the world develop. |
 | World-action model (WAM) | A policy architecture coupling action prediction with predictive world/video representations. |
 
-Use the daily lessons and their primary sources for assumptions, derivations, and product-specific definitions. These brief definitions are a starting vocabulary.
+Use the lessons and their primary sources for assumptions, derivations, and product-specific definitions. These brief definitions are a starting vocabulary.

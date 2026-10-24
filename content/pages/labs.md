@@ -11,7 +11,7 @@ python3 examples/control.py --gain 6 --delay-steps 8
 
 The model integrates a damped point mass over eight seconds. A fixed disturbance occurs partway through the run. Position feedback can be delayed, velocity feedback is current, and commands are clipped to a bounded range. Output is JSON containing parameters, final error, overshoot, and samples.
 
-Predict how increasing gain changes the response, then compare your prediction with the data. Use day 6's browser experiment to visualize the same equations. Do not generalize these gains to an actual robot.
+Predict how increasing gain changes the response, then compare your prediction with the data. Use lesson 6's browser experiment to visualize the same equations. Do not generalize these gains to an actual robot.
 
 ## Lab 2: noisy measurements and a scalar belief
 
@@ -53,7 +53,7 @@ This optional observer emits JSONL and sends no robot commands. Source frames/ti
 
 For the main arm task, observe `sensor_msgs/msg/JointState` with `python3 examples/ros2_joint_observer.py --topic /joint_states` instead. The odometry observer remains a mobile-robot comparison.
 
-The CPU tests do not execute these ROS adapters or GPU workflows. Follow days 9–14 for integration evidence.
+The CPU tests do not execute these ROS adapters or GPU workflows. Follow lessons 9–14 for integration evidence.
 
 ## Lab 4: pick-and-place and the grasp assumption
 

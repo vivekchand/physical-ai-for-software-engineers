@@ -18,7 +18,7 @@ def main():
         from rclpy.qos import qos_profile_sensor_data
         from nav_msgs.msg import Odometry
     except ImportError:
-        parser.error("Source a supported ROS 2 environment with rclpy and nav_msgs first. See day 9.")
+        parser.error("Source a supported ROS 2 environment with rclpy and nav_msgs first. See lesson 9.")
     run_id = str(uuid.uuid4())
 
     class Observer(Node):

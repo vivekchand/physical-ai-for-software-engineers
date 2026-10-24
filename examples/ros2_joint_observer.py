@@ -17,7 +17,7 @@ def main():
         from rclpy.qos import qos_profile_sensor_data
         from sensor_msgs.msg import JointState
     except ImportError:
-        parser.error("Source ROS 2 with rclpy and sensor_msgs first. See day 9.")
+        parser.error("Source ROS 2 with rclpy and sensor_msgs first. See lesson 9.")
     run_id = str(uuid.uuid4())
 
     class Observer(Node):

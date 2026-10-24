@@ -31,7 +31,7 @@ For our arm: training consumes episodes and emits checkpoints; simulation produc
 4. Add the specific perception or navigation capability you need.
 5. Evaluate whether policy learning or foundation models address an actual gap.
 
-## Today's practice
+## Practice
 
 Draw a dependency map for your mission. Label each component “needed now,” “optional later,” or “not used.” Write one sentence explaining every inclusion. Read the dedicated NVIDIA field note for the dated compatibility snapshot.
 

@@ -36,7 +36,7 @@ These files contain explicitly synthetic events. They are generated fixtures, no
 
 The design lesson is useful beyond any product: keep the observer outside the robot's fast control loop, collect evidence with explicit provenance, and route authorized interventions through supported interfaces. A telemetry observer's failure should not become a dependency of the machine's local safety system.
 
-## Today's practice
+## Practice
 
 Write an incident report for each scenario. State the last known task state, last motion measurement, evidence age, and unresolved questions. For duplicate events, preserve raw evidence but avoid double-counting a single request as two distinct actions.
 

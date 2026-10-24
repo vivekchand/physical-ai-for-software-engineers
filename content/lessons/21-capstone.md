@@ -1,6 +1,6 @@
 ## Build a report another engineer can reproduce
 
-Return to your day-1 mission. Your main task is putting the red cube in the tray. Your final artifact is a working experiment plus an evidence-based explanation of its behavior. Select the route matching your actual environment.
+Return to your mission from lesson 1. Your main task is putting the red cube in the tray. Your final artifact is a working experiment plus an evidence-based explanation of its behavior. Select the route matching your actual environment.
 
 ### Laptop capstone
 
@@ -57,10 +57,10 @@ If you turn these notes into a book, keep the original Markdown chapters, versio
 
 ## Checkpoint
 
-<details><summary>What does completing 21 days establish?</summary><p>A foundation and the specific practical work you actually completed. It does not establish general robotics expertise, hardware compatibility, safety certification, or proficiency with every NVIDIA tool. Your reproducible artifacts make the accomplishment concrete.</p></details>
+<details><summary>What does completing the guide establish?</summary><p>A foundation and the specific practical work you actually completed. It does not establish general robotics expertise, hardware compatibility, safety certification, or proficiency with every NVIDIA tool. Your reproducible artifacts make the accomplishment concrete.</p></details>
 
 ## Continue
 
 - Revisit the [PORA exercises](https://porabook.com/exercises/) and implement one algorithm without a completed notebook.
 - Choose one physical platform with a qualified partner and study its supported interfaces.
-- Read the guide's “After day 21” field note for a 90-day continuation.
+- Read the guide's “Keep learning” field note for further projects.

@@ -5,8 +5,7 @@
     "title": "Your code meets the real world",
     "summary": "Trade request-response thinking for feedback, uncertainty, and physical consequences.",
     "week": 1,
-    "tag": "Foundations",
-    "minutes": 60
+    "tag": "Foundations"
   },
   {
     "day": 2,
@@ -14,8 +13,7 @@
     "title": "Read the autonomy stack",
     "summary": "Follow a pick-and-place arm from camera observations to verified placement.",
     "week": 1,
-    "tag": "Architecture",
-    "minutes": 60
+    "tag": "Architecture"
   },
   {
     "day": 3,
@@ -23,8 +21,7 @@
     "title": "Frames, time, and units",
     "summary": "Learn the three invisible contracts behind a believable robot state.",
     "week": 1,
-    "tag": "Geometry",
-    "minutes": 75
+    "tag": "Geometry"
   },
   {
     "day": 4,
@@ -32,8 +29,7 @@
     "title": "Model an arm and its gripper",
     "summary": "Solve a small inverse-kinematics problem and inspect a pick-and-place sequence.",
     "week": 1,
-    "tag": "Motion",
-    "minutes": 75
+    "tag": "Motion"
   },
   {
     "day": 5,
@@ -41,8 +37,7 @@
     "title": "Find a path. Make it feasible.",
     "summary": "Understand graph search, sampling, constraints, and time-parameterized motion.",
     "week": 1,
-    "tag": "Planning",
-    "minutes": 75
+    "tag": "Planning"
   },
   {
     "day": 6,
@@ -50,8 +45,7 @@
     "title": "Close the feedback loop",
     "summary": "Tune a controller and see why delay and saturation matter.",
     "week": 1,
-    "tag": "Interactive lab",
-    "minutes": 90
+    "tag": "Interactive lab"
   },
   {
     "day": 7,
@@ -59,8 +53,7 @@
     "title": "See through a robot's sensors",
     "summary": "Connect camera geometry, depth, detection, and calibration to failure modes.",
     "week": 1,
-    "tag": "Perception",
-    "minutes": 75
+    "tag": "Perception"
   },
   {
     "day": 8,
@@ -68,8 +61,7 @@
     "title": "Estimate what you cannot measure",
     "summary": "Build intuition for filtering, uncertainty, localization, and SLAM.",
     "week": 2,
-    "tag": "Estimation",
-    "minutes": 90
+    "tag": "Estimation"
   },
   {
     "day": 9,
@@ -77,8 +69,7 @@
     "title": "Speak ROS 2",
     "summary": "Run your first nodes and inspect topics, services, and actions.",
     "week": 2,
-    "tag": "ROS 2 lab",
-    "minutes": 90
+    "tag": "ROS 2 lab"
   },
   {
     "day": 10,
@@ -86,8 +77,7 @@
     "title": "Make the messages mean something",
     "summary": "Work with transforms, QoS, simulated time, and replay.",
     "week": 2,
-    "tag": "ROS 2 lab",
-    "minutes": 90
+    "tag": "ROS 2 lab"
   },
   {
     "day": 11,
@@ -95,8 +85,7 @@
     "title": "Find your way around NVIDIA",
     "summary": "Know when to reach for Isaac Sim, Lab, ROS, GR00T, Cosmos, and Jetson.",
     "week": 2,
-    "tag": "Ecosystem map",
-    "minutes": 60
+    "tag": "Ecosystem map"
   },
   {
     "day": 12,
@@ -104,8 +93,7 @@
     "title": "Get Isaac Sim running",
     "summary": "Choose compatible hardware and versions, then prove a scene actually runs.",
     "week": 2,
-    "tag": "GPU track",
-    "minutes": 120
+    "tag": "GPU track"
   },
   {
     "day": 13,
@@ -113,8 +101,7 @@
     "title": "Bridge the simulated robot to ROS 2",
     "summary": "Inspect live state, simulated clocks, and transport boundaries.",
     "week": 2,
-    "tag": "GPU track",
-    "minutes": 120
+    "tag": "GPU track"
   },
   {
     "day": 14,
@@ -122,8 +109,7 @@
     "title": "Plan a grasp. Place the cube.",
     "summary": "Run a Franka manipulation workflow and distinguish arm motion from object outcomes.",
     "week": 2,
-    "tag": "Manipulation lab",
-    "minutes": 120
+    "tag": "Manipulation lab"
   },
   {
     "day": 15,
@@ -131,8 +117,7 @@
     "title": "Choose actions over time",
     "summary": "Compare state machines, dynamic programming, and reinforcement learning.",
     "week": 3,
-    "tag": "Decision-making",
-    "minutes": 75
+    "tag": "Decision-making"
   },
   {
     "day": 16,
@@ -140,8 +125,7 @@
     "title": "Train and inspect an Isaac Lab policy",
     "summary": "Run a small task, inspect checkpoints, and separate reward from success.",
     "week": 3,
-    "tag": "GPU track",
-    "minutes": 120
+    "tag": "GPU track"
   },
   {
     "day": 17,
@@ -149,8 +133,7 @@
     "title": "Meet VLAs and world-action models",
     "summary": "Compare Dream-1, GR00T, the π family, OpenVLA, SmolVLA, and Gemini Robotics.",
     "week": 3,
-    "tag": "Robot learning",
-    "minutes": 90
+    "tag": "Robot learning"
   },
   {
     "day": 18,
@@ -158,8 +141,7 @@
     "title": "Build better data and test worlds",
     "summary": "Use randomization and world models to ask harder evaluation questions.",
     "week": 3,
-    "tag": "Data & evaluation",
-    "minutes": 90
+    "tag": "Data & evaluation"
   },
   {
     "day": 19,
@@ -167,8 +149,7 @@
     "title": "Bring a policy toward deployment",
     "summary": "Profile inference, understand Jetson, and make the sim-to-real gap explicit.",
     "week": 3,
-    "tag": "Deployment",
-    "minutes": 90
+    "tag": "Deployment"
   },
   {
     "day": 20,
@@ -176,8 +157,7 @@
     "title": "Make behavior inspectable",
     "summary": "Connect intent, authorization, commands, and evidence of physical outcomes.",
     "week": 3,
-    "tag": "Observability lab",
-    "minutes": 90
+    "tag": "Observability lab"
   },
   {
     "day": 21,
@@ -185,7 +165,6 @@
     "title": "Build it. Break it. Explain it.",
     "summary": "Publish a reproducible mission report and defend what your evidence proves.",
     "week": 3,
-    "tag": "Capstone",
-    "minutes": 150
+    "tag": "Capstone"
   }
 ]

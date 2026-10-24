@@ -39,7 +39,7 @@ ros2 bag play mission_run --clock
 
 Configure consumers to use simulated time where appropriate. Avoid running two independent clock publishers in the same replay graph. Recordings only contain what was captured; they do not reconstruct missing sensor measurements or hidden internal state.
 
-## Today's practice
+## Practice
 
 Capture 30 seconds of a simulated topic. Save the bag metadata, ROS distro, topic types, QoS observations, frame tree, and run identifier. Pause or reset the simulator and inspect the clock behavior. Document what needs to restart for replay.
 

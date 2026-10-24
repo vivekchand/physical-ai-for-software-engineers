@@ -13,11 +13,11 @@
     document.querySelectorAll('[data-progress]').forEach(el => { el.value = complete.size; });
     document.querySelectorAll('[data-day-link]').forEach(el => { el.querySelector('.nav-check').textContent = complete.has(Number(el.dataset.dayLink)) ? '✓' : ''; });
     document.querySelectorAll('[data-course-day]').forEach(el => { el.classList.toggle('week-complete', complete.has(Number(el.dataset.courseDay))); });
-    document.querySelectorAll('[data-complete]').forEach(el => { const done = complete.has(Number(el.dataset.complete)); el.setAttribute('aria-pressed', String(done)); el.textContent = done ? 'Completed ✓ · Undo' : 'Mark day complete'; });
+    document.querySelectorAll('[data-complete]').forEach(el => { const done = complete.has(Number(el.dataset.complete)); el.setAttribute('aria-pressed', String(done)); el.textContent = done ? 'Completed ✓ · Undo' : 'Mark lesson complete'; });
     const next = Array.from({length:21}, (_, i) => i + 1).find(day => !complete.has(day));
     const link = next && document.querySelector(`[data-day-link="${next}"]`);
     const start = document.querySelector('[data-start]');
-    if (complete.size && start && link) { start.href = link.href; start.textContent = `Continue with day ${String(next).padStart(2,'0')} →`; }
+    if (complete.size && start && link) { start.href = link.href; start.textContent = `Continue with lesson ${String(next).padStart(2,'0')} →`; }
   }
   paintProgress();
   document.querySelectorAll('[data-complete]').forEach(el => el.addEventListener('click', () => {
@@ -74,7 +74,7 @@
   async function search(){
     const query = input.value.trim().toLowerCase();
     results.replaceChildren();
-    if(!query){status.textContent='Search all 21 days and field notes.';return;}
+    if(!query){status.textContent='Search all 21 lessons and field notes.';return;}
     let pages;
     try { pages = await loadIndex(); } catch {status.textContent='Search could not load. You can still browse every lesson in the course navigation.';return;}
     if(query !== input.value.trim().toLowerCase()) return;
@@ -83,7 +83,7 @@
     status.textContent = found.length ? `${found.length} matching pages` : 'No matches. Try “control”, “Isaac”, or “ROS”.';
     found.forEach(page=>{
       const a=document.createElement('a');a.href=page.url;
-      const label=document.createElement('small');label.textContent=page.day ? `DAY ${String(page.day).padStart(2,'0')}` : 'FIELD NOTES';
+      const label=document.createElement('small');label.textContent=page.day ? `LESSON ${String(page.day).padStart(2,'0')}` : 'FIELD NOTES';
       const title=document.createElement('strong');title.textContent=page.title;
       const br=document.createElement('br');
       const excerpt=document.createElement('p');const at=page.text.toLowerCase().indexOf(terms[0]);const start=Math.max(0,at-55);excerpt.textContent=(start?'…':'')+page.text.slice(start,start+180)+'…';

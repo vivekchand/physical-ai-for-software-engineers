@@ -70,4 +70,4 @@ This is a dated review, not an automatically refreshed feed. Moving documentatio
 
 ## What to install first
 
-For this guide: Python labs → ROS 2 basics → Isaac Sim → simulator-to-ROS observation → one navigation/perception workflow. Add Isaac Lab, GR00T, Cosmos, and edge deployment as the relevant days require. The 21-day core does not require training a large foundation model.
+For this guide: Python labs → ROS 2 basics → Isaac Sim → simulator-to-ROS observation → one navigation/perception workflow. Add Isaac Lab, GR00T, Cosmos, and edge deployment as the relevant lessons require. The core lessons does not require training a large foundation model.

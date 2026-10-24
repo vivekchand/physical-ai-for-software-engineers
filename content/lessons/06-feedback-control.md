@@ -18,7 +18,7 @@ This browser lab models a one-dimensional point mass with damping, limited accel
 
 The vertical scale adapts to show the full response. Compare the numerical overshoot as well as the curve. The disturbance applies during 3.25–3.75 seconds. The acceleration command is clipped to a fixed range. The velocity feedback remains current while the position measurement is delayed. These assumptions explain the graph; it is not a benchmark of PID, MPC, or Isaac.
 
-## Today's practice
+## Practice
 
 Run `python3 examples/control.py --gain 2 --delay-steps 0`, then repeat with a higher gain and delayed feedback. The included Python model matches the browser equations.
 

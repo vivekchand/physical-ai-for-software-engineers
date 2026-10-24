@@ -54,7 +54,7 @@ The reviewed [Gemini Robotics page](https://deepmind.google/models/gemini-roboti
 4. Compare one hosted or larger-model route only when you can match its contract and resources.
 5. Keep the same held-out scenes, object placements, and outcome rubric across comparisons.
 
-You do not need to install or train every model in the 21-day core. Choose one reproducible path. [LeRobot's policy catalog](https://huggingface.co/docs/lerobot) provides further families as your needs grow.
+You do not need to install or train every model in the core lessons. Choose one reproducible path. [LeRobot's policy catalog](https://huggingface.co/docs/lerobot) provides further families as your needs grow.
 
 ## Write an observation/action contract
 
