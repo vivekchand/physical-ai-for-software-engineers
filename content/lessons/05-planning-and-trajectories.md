@@ -20,7 +20,7 @@ Configuration space includes the robot's joint configuration and geometry. Check
 
 Repeated planning can be a reasonable response to a changing obstacle. Diagnose whether the updates produce progress before calling the system stuck.
 
-## Today's practice
+## Practice
 
 Run the A* notebook linked below. Add an obstacle across a corridor, then open a narrow passage. Change the grid resolution. Explain whether a failure comes from the environment, the discretization, or the search budget.
 

@@ -13,12 +13,12 @@ For the arm, “reward for reaching the tray” can encourage moving an empty gr
 Keep at least three measurements separate:
 
 - The training reward the algorithm optimizes.
-- The operational success criterion from day 1.
+- The operational success criterion from lesson 1.
 - Constraint violations, interventions, and adverse outcomes.
 
 Partial observations complicate matters further. An instantaneous camera frame may not reveal velocity or what is hidden behind an obstacle. History or a maintained belief can matter for decisions.
 
-## Today's practice
+## Practice
 
 Write a state machine for pick-and-place and interruption. Include an explicit unknown/outcome-not-confirmed condition rather than forcing every task into success or failure.
 

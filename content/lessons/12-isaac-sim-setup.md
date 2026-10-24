@@ -31,7 +31,7 @@ Then use the release's Basic Robot tutorial, followed by the [Franka pick-and-pl
 
 Save the exact version, launch method, scene identifier, and a screenshot showing a running scene. A loaded viewport alone does not demonstrate advancing physics.
 
-## Today's practice
+## Practice
 
 Produce `environment.md` with a successful launch record or an explicit blocker. On the laptop route, complete the portable motion/control lab and write down what that model cannot validate. Mark the GPU step pending rather than counting it as executed.
 

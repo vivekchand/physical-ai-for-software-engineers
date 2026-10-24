@@ -43,7 +43,7 @@ These commands inspect or run demonstration software. They do not command a robo
 
 Before subscribing to a robot's topic, inspect its type, rate, frame conventions, source timestamp, and QoS. Before calling a service or sending an action, understand authority, side effects, and supported behavior. Discovery alone does not grant permission to control a machine.
 
-## Today's practice
+## Practice
 
 Save a text transcript containing node names, the `/chatter` type, one received sample, and the observed publisher/subscriber counts. Stop the talker and record what the listener does. Distinguish “no new messages” from “the last message means the system is healthy.”
 

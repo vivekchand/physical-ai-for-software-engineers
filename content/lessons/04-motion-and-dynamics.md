@@ -35,7 +35,7 @@ The same endpoint trajectory can produce different joint torques when the cube i
 
 The optional mobile comparison is a unicycle model. It is useful for understanding nonholonomic motion, but the arm's joint/configuration model is our main example.
 
-## Today's practice
+## Practice
 
 Compute the endpoint at zero joint angles, solve IK for the pickup and tray positions, and compare by applying forward kinematics again. Then try a target farther than the sum of the link lengths. Save a table of targets, joint solutions, and rejection reasons. Write down three effects the toy does not simulate.
 

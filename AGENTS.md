@@ -4,7 +4,7 @@ This is an independent educational repository, not the ClawMetry product reposit
 Never copy credentials, private project files, commercial plans, or user data here.
 
 Keep lessons original and grounded in primary references. Prefer concise theory,
-one practical experiment, a checkpoint, and an explicit artifact for each day.
+one practical experiment, a checkpoint, and an explicit artifact for each lesson.
 Use a dated compatibility snapshot for NVIDIA/ROS instructions. Never describe
 documentation review or CPU tests as proof that GPU or hardware workflows ran.
 

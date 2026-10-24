@@ -21,7 +21,7 @@ Localization estimates pose relative to a map. SLAM estimates the robot trajecto
 
 An estimator's covariance describes uncertainty under its assumptions. It can be overconfident when the model, noise, or data associations are wrong. Compare reported uncertainty with actual error on held-out trials when ground truth is available.
 
-## Today's practice
+## Practice
 
 Run `python3 examples/estimate.py`. Repeat with `--measurement-variance 4`. The script uses seeded synthetic measurements of a fixed position and a scalar filter. Inspect the estimate and variance as new observations arrive.
 

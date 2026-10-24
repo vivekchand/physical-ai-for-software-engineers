@@ -20,7 +20,7 @@ Inspect a few samples manually. Are labels aligned? Is depth in the expected uni
 
 If you cannot run GPU generation, design the experiment using an explicit scene specification and a failure taxonomy. Label it a design artifact rather than a generated dataset.
 
-## Today's practice
+## Practice
 
 ### Add a result you can compute on a laptop
 

@@ -13,12 +13,12 @@ Help make robotics easier to enter without weakening its technical foundations.
 ## Edit the source
 
 Lessons are in `content/lessons/`. Supporting notes are in `content/pages/`.
-The order and daily practice budgets live in `curriculum.json`. Site generation
+The lesson order and part groupings live in `curriculum.json`. Site generation
 is in `scripts/build.py`; generated `dist/` output is not committed.
 
 Keep the original explanatory voice, practical exercises, checkpoints, and links
 to primary sources. Explain assumptions and evidence limits. Do not promise
-robotics expertise in 21 days or imply simulator results certify real hardware.
+robotics expertise on a fixed timetable or imply simulator results certify real hardware.
 Keep ClawMetry mentions relevant, factual, and clear about proposed integrations.
 
 Do not copy textbook passages, vendor diagrams, course videos, proprietary data,

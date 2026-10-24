@@ -97,20 +97,20 @@ def main():
             checked += 1
     curriculum = json.loads(Path("curriculum.json").read_text())
     if [item["day"] for item in curriculum] != list(range(1, 22)):
-        errors.append("Curriculum must cover exactly days 1 to 21")
+        errors.append("Curriculum must cover exactly lessons 1 to 21")
     for item in curriculum:
         rel = f"days/{item['slug']}/index.html"
         if rel not in parsed:
-            errors.append(f"Missing day {item['day']}")
+            errors.append(f"Missing lesson {item['day']}")
         source = Path(f"content/lessons/{item['day']:02}-{item['slug']}.md").read_text()
-        for section in ["## Today's practice", "## Checkpoint"]:
-            if section not in source and not (item['day'] == 21 and section == "## Today's practice"):
-                errors.append(f"Day {item['day']}: missing {section}")
+        for section in ["## Practice", "## Checkpoint"]:
+            if section not in source and not (item['day'] == 21 and section == "## Practice"):
+                errors.append(f"Lesson {item['day']}: missing {section}")
         if "https://" not in source:
-            errors.append(f"Day {item['day']}: missing primary source")
+            errors.append(f"Lesson {item['day']}: missing primary source")
     index = json.loads((root/"search-index.json").read_text())
     if len([entry for entry in index if entry.get("day")]) != 21:
-        errors.append("Search does not cover 21 days")
+        errors.append("Search does not cover 21 lessons")
     search_urls = {entry["url"] for entry in index}
     for source in Path("content/pages").glob("*.md"):
         if f"{source.stem}/index.html" not in parsed:

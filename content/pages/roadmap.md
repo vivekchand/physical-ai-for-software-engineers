@@ -1,16 +1,16 @@
-## Weeks 4–6: own one algorithm
+## Own one algorithm
 
 Choose a controller, an estimator, or a planner. Implement it from the mathematical description, compare it with a known reference, and deliberately violate its assumptions. Explain the resulting failures using traces and plots.
 
 Work through the relevant PORA derivations. Refresh linear algebra, conditional probability, numerical integration, and constrained optimization where your chosen algorithm needs them. A precise understanding of one algorithm is more useful than collecting unexplained tool names.
 
-## Weeks 7–9: own one integration
+## Own one integration
 
 Choose one supported robot model or simulator workflow. Reproduce it from a clean environment, then change one sensor, task, or operating condition. Document timing, frames, calibration, dependencies, and recovery behavior.
 
 Ask another engineer to reproduce your result. Add regression cases for failures you actually observed. A test should challenge the claim you care about, rather than simply verify that a configuration file contains a string.
 
-## Weeks 10–12: own one evaluation
+## Own one evaluation
 
 Define a distribution of tasks and conditions. Hold out cases during tuning. Report failure categories, interventions, latency distributions, resource use, and success criteria. Describe your references for ground truth and their limitations.
 

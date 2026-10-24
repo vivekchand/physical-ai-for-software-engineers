@@ -18,7 +18,7 @@ Our detector may label the red cube with a high score while its estimated pose i
 
 For a reliable investigation, preserve the model version, sensor identity, calibration version, frame, source timestamp, and relevant output. Retain imagery only with appropriate scope and permission; a tabletop camera can also record people and sensitive operations.
 
-## Today's practice
+## Practice
 
 Choose a cube and tray in a photograph. Describe which properties you could infer from a single RGB image and which would require calibration, additional views, depth, or other assumptions. Explain why a bounding box alone does not define a gripper orientation.
 

@@ -12,7 +12,7 @@ The table separates a parts package from a usable teleoperation kit. Prices are 
 
 The SO-101 variant links select the reviewed black package. Its page showed a generic sold-out label while its public product data reported available variants; confirm the selected package, stock, and destination delivery with the seller. Do not treat a parts-only “from $199” label as the assembled kit price. [Supplier variant data](https://shop.wowrobo.com/products/so-arm101-diy-kit-assembled-version-1.js).
 
-PiPER's $1,999 figure was verified in its [manufacturer product data](https://global.agilex.ai/products/piper.js). Regional resellers and configured packages can differ. Confirm which PiPER variant and accessories you are comparing. MakerMods' current Maker Arm listing separately showed future-batch shipping; check lead time before planning a 21-day hardware schedule.
+PiPER's $1,999 figure was verified in its [manufacturer product data](https://global.agilex.ai/products/piper.js). Regional resellers and configured packages can differ. Confirm which PiPER variant and accessories you are comparing. MakerMods' current Maker Arm listing separately showed future-batch shipping; check lead time before scheduling your hardware experiments.
 
 ## Understand what “two arms” means
 

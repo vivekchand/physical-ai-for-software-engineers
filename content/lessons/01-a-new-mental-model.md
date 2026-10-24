@@ -32,7 +32,7 @@ Start with a transparent scripted baseline. Later, examine how a demonstration p
 
 You can learn the core ideas on a laptop. GPU exercises later use manufacturer-supported environments. A small mathematical model, a photorealistic simulation, and a physical robot are three different kinds of evidence.
 
-## Today's practice
+## Practice
 
 Write a one-page mission specification:
 
@@ -41,7 +41,7 @@ Write a one-page mission specification:
 3. Which failures should be recoverable, and which require an operator?
 4. Who can authorize the task, and who owns the machine's local control?
 
-Save it as `mission.md`. Revisit it on day 21. Plan about 60 minutes including the exercise; the short reading is only the beginning.
+Save it as `mission.md`. Revisit it on lesson 21. Work through the exercise at your own pace; the short reading is only the beginning.
 
 Add one changed-cube-position scenario and predict how each approach above could fail. The optional [applications guide](../pages/applications.md) helps turn the mission into a useful pilot.
 

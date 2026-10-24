@@ -38,7 +38,7 @@ Read the model card and repository at a pinned revision. Record expected camera 
 
 Open source code, open model weights, research descriptions, hosted inference, and commercial support are separate access questions. The π family's openpi checkpoints are not a promise that every newer hosted model is downloadable. A Gemini reasoning endpoint is not automatically a motor controller.
 
-## Today's practice
+## Practice
 
 Write an observation/action contract for one open-model route and Dream-1. Compare both with your arm task and record mismatches. Then choose one route to study further. On a suitable environment, use the selected project's supplied-data inference example before planning robot execution. The guide does not authenticate services, upload observations, or control remote playground robots.
 

@@ -12,6 +12,7 @@ from string import Template
 import markdown
 
 ROOT = Path(__file__).resolve().parents[1]
+# Legacy day/week identifiers preserve public URLs, book anchors, and saved progress.
 REPO = "https://github.com/vivekchand/physical-ai-for-software-engineers"
 ORIGIN = "https://vivekchand.github.io"
 FIELD_NOTES = [
@@ -26,7 +27,7 @@ FIELD_NOTES = [
     ("nvidia", "The NVIDIA robotics map", "A source-linked map of what each tool is for, and what to install first."),
     ("resources", "Go deeper, deliberately", "The original references behind the guide, organized by the question you are trying to answer."),
     ("glossary", "A working vocabulary", "Plain-language definitions you can use in an engineering conversation."),
-    ("roadmap", "After day 21", "Turn a first project into deeper engineering competence."),
+    ("roadmap", "Keep learning", "Turn a first project into deeper engineering competence."),
     ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure.")
 ]
 
@@ -45,6 +46,10 @@ def render_md(text, base):
     text = resolve_links(text, base)
     engine = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "admonition", "attr_list"])
     body = engine.convert(text)
+    legacy_fragments = {"practice": "todays-practice", "own-one-algorithm": "weeks-46-own-one-algorithm",
+                        "own-one-integration": "weeks-79-own-one-integration", "own-one-evaluation": "weeks-1012-own-one-evaluation"}
+    for current, previous in legacy_fragments.items():
+        body = body.replace(f'<h2 id="{current}">', f'<span id="{previous}" aria-hidden="true"></span><h2 id="{current}">')
     return body, engine.toc
 
 
@@ -113,8 +118,8 @@ def main():
                 rows.append(f'''<a class="curriculum-row" href="{base}/days/{item['slug']}/" data-course-day="{item['day']}">
                   <span class="row-day">{item['day']:02}</span><span class="row-copy"><strong>{html.escape(item['title'])}</strong><span>{html.escape(item['summary'])}</span></span>
                   <span class="row-tag">{html.escape(item['tag'])}</span><span class="row-arrow" aria-hidden="true">↗</span></a>''')
-        weeks.append(f'<section class="week" id="week-{week}"><div class="week-heading"><span class="eyebrow">WEEK {week:02}</span><h3>{title}</h3><p>{subtitle}</p></div><div class="week-lessons">{"".join(rows)}</div></section>')
-    page("index.html", "Physical AI for Software Engineers", "An open, practical 21-day field guide to robotics, ROS 2, NVIDIA Isaac, and physical AI. Original lessons, runnable labs, and a capstone.", home.replace("{{curriculum}}", "".join(weeks)))
+        weeks.append(f'<section class="week" id="week-{week}"><div class="week-heading"><span class="eyebrow">PART {week:02}</span><h3>{title}</h3><p>{subtitle}</p></div><div class="week-lessons">{"".join(rows)}</div></section>')
+    page("index.html", "Physical AI for Software Engineers", "A free, open-source, self-paced guide to robotics, ROS 2, NVIDIA Isaac, and physical AI. Original lessons, runnable labs, and a pick-and-place project.", home.replace("{{curriculum}}", "".join(weeks)))
 
     for i, item in enumerate(curriculum):
         source = f"content/lessons/{item['day']:02}-{item['slug']}.md"
@@ -123,12 +128,12 @@ def main():
         words = len(re.findall(r"\b\w+\b", re.sub(r"<[^>]*>", " ", body)))
         previous = curriculum[i-1] if i else None
         following = curriculum[i+1] if i+1 < len(curriculum) else None
-        prev_link = f'<a href="{base}/days/{previous["slug"]}/"><small>← PREVIOUS</small>{html.escape(previous["title"])}</a>' if previous else f'<a href="{base}/"><small>← THE GUIDE</small>All 21 days</a>'
-        next_link = f'<a href="{base}/days/{following["slug"]}/"><small>NEXT →</small>{html.escape(following["title"])}</a>' if following else f'<a href="{base}/roadmap/"><small>KEEP GOING →</small>Your next 90 days</a>'
-        content = f'''<div class="lesson-header"><a class="breadcrumb" href="{base}/#learning-path">The 21-day path</a><p class="eyebrow">DAY {item['day']:02} / WEEK {item['week']:02} / {html.escape(item['tag'].upper())}</p><h1>{html.escape(item['title'])}</h1><p class="lesson-deck">{html.escape(item['summary'])}</p><div class="lesson-meta"><span>{max(2, math.ceil(words/180))} min read</span><span>Plan {item['minutes']} min with practice</span><span>Original, open material</span></div></div>
-        <details class="reader-toc"><summary>On this day</summary>{toc}</details><div class="reader-layout"><article class="prose" id="lesson-content">{body}
-        <div class="completion-box"><div><strong>Can you explain it without the page?</strong><p>Try the checkpoint first. Your progress stays in this browser.</p></div><button class="button primary" data-complete="{item['day']}" aria-pressed="false">Mark day complete</button></div><p class="edit-link"><a href="{REPO}/edit/main/{source}">Improve this lesson on GitHub ↗</a></p><nav class="chapter-nav" aria-label="Previous and next lesson">{prev_link}{next_link}</nav></article></div>'''
-        page(f"days/{item['slug']}/index.html", item["title"] + " · Day " + str(item["day"]), item["summary"], content, item["slug"], toc, str(item["day"]), source)
+        prev_link = f'<a href="{base}/days/{previous["slug"]}/"><small>← PREVIOUS</small>{html.escape(previous["title"])}</a>' if previous else f'<a href="{base}/"><small>← THE GUIDE</small>All lessons</a>'
+        next_link = f'<a href="{base}/days/{following["slug"]}/"><small>NEXT →</small>{html.escape(following["title"])}</a>' if following else f'<a href="{base}/roadmap/"><small>KEEP GOING →</small>Explore further</a>'
+        content = f'''<div class="lesson-header"><a class="breadcrumb" href="{base}/#learning-path">The learning path</a><p class="eyebrow">LESSON {item['day']:02} / PART {item['week']:02} / {html.escape(item['tag'].upper())}</p><h1>{html.escape(item['title'])}</h1><p class="lesson-deck">{html.escape(item['summary'])}</p><div class="lesson-meta"><span>{max(2, math.ceil(words/180))} min read</span><span>Self-paced practice</span><span>Original, open material</span></div></div>
+        <details class="reader-toc"><summary>In this lesson</summary>{toc}</details><div class="reader-layout"><article class="prose" id="lesson-content">{body}
+        <div class="completion-box"><div><strong>Can you explain it without the page?</strong><p>Try the checkpoint first. Your progress stays in this browser.</p></div><button class="button primary" data-complete="{item['day']}" aria-pressed="false">Mark lesson complete</button></div><p class="edit-link"><a href="{REPO}/edit/main/{source}">Improve this lesson on GitHub ↗</a></p><nav class="chapter-nav" aria-label="Previous and next lesson">{prev_link}{next_link}</nav></article></div>'''
+        page(f"days/{item['slug']}/index.html", item["title"] + " · Lesson " + str(item["day"]), item["summary"], content, item["slug"], toc, str(item["day"]), source)
         plain = html.unescape(re.sub(r"<[^>]+>", " ", body))
         search.append({"title":item["title"], "day":item["day"], "url":f"{base}/days/{item['slug']}/", "text":re.sub(r"\s+", " ", plain)})
 
@@ -139,7 +144,7 @@ def main():
         content = f'<div class="lesson-header"><p class="eyebrow">FIELD NOTES / {slug.upper()}</p><h1>{title}</h1><p class="lesson-deck">{deck}</p></div><article class="prose">{body}</article>'
         page(f"{slug}/index.html", title, deck, content, toc=toc, source=source)
         search.append({"title":title,"day":None,"url":f"{base}/{slug}/", "text":re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))})
-    chapters, manuscript = [], ["# Physical AI for Software Engineers\n\nAn original, open 21-day field guide.\n\nText: CC BY 4.0, Vivek Chand and contributors. Code: MIT. External sources retain their own licenses.\n\nDocumentation reviewed 23 October 2026. GPU reference exercises are not independently executed by this project's CPU tests.\n"]
+    chapters, manuscript = [], ["# Physical AI for Software Engineers\n\nA free, open-source, self-paced guide to robotics, ROS 2, and NVIDIA Isaac. Learn by building a pick-and-place robot.\n\nText: CC BY 4.0, Vivek Chand and contributors. Code: MIT. External sources retain their own licenses.\n\nDocumentation reviewed 23 October 2026. GPU reference exercises are not independently executed by this project's CPU tests.\n"]
     contents = []
     for item in curriculum:
         raw = (ROOT/f"content/lessons/{item['day']:02}-{item['slug']}.md").read_text()
@@ -147,9 +152,9 @@ def main():
         body = re.sub(r'id="([^"]+)"', lambda m: f'id="day-{item["day"]}-{m[1]}"', body)
         body = re.sub(r'href="#([^"]+)"', lambda m: f'href="#day-{item["day"]}-{m[1]}"', body)
         body = body.replace('<h3', '<h4').replace('</h3>', '</h4>').replace('<h2', '<h3').replace('</h2>', '</h3>')
-        chapters.append(f'<section class="book-chapter" id="day-{item["day"]}"><p class="eyebrow">DAY {item["day"]:02}</p><h2>{html.escape(item["title"])}</h2>{body}</section>')
+        chapters.append(f'<section class="book-chapter" id="day-{item["day"]}"><p class="eyebrow">LESSON {item["day"]:02}</p><h2>{html.escape(item["title"])}</h2>{body}</section>')
         contents.append(f'<li><a href="#day-{item["day"]}">{item["day"]:02}. {html.escape(item["title"])}</a></li>')
-        manuscript.append(f'\n\n# Day {item["day"]:02}: {item["title"]}\n\n{resolve_links(raw, ORIGIN + base)}')
+        manuscript.append(f'\n\n# Lesson {item["day"]:02}: {item["title"]}\n\n{resolve_links(raw, ORIGIN + base)}')
     for slug, title in [("manipulation", "Pick-and-place field note"), ("models", "Robot models and Dream Labs"), ("hardware", "Hardware buying guide"),
                         ("robot-learning", "Robot learning and datasets"), ("cloud-lab", "Cloud Isaac lab"),
                         ("evaluation", "Evaluation and sim-to-real"), ("applications", "Applications and pilot economics")]:
@@ -161,7 +166,7 @@ def main():
         chapters.append(f'<section class="book-chapter" id="appendix-{slug}"><p class="eyebrow">FIELD NOTE</p><h2>{title}</h2>{body}</section>')
         contents.append(f'<li><a href="#appendix-{slug}">{title}</a></li>')
         manuscript.append(f'\n\n# Field note: {title}\n\n{resolve_links(raw, ORIGIN + base)}')
-    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 days and seven practical field notes, from choosing an arm to learning, cloud setup, evaluation, and application costs. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
+    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 lessons and seven practical field notes, from choosing an arm to learning, cloud setup, evaluation, and application costs. Work at your own pace. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
     page("book/index.html", "The reading edition", "All 21 original lessons in a printable reading edition.", book)
     (out/"book.md").write_text("\n".join(manuscript))
     page("404.html", "Page not found", "Find your way back to the field guide.", f'<div class="lesson-header"><p class="eyebrow">404 / OFF THE MAP</p><h1>Let’s find your way back.</h1><p class="lesson-deck">This page has moved or does not exist.</p><a class="button primary" href="{base}/">Open the learning path →</a></div>')

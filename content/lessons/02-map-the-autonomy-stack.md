@@ -48,7 +48,7 @@ Suppose the cube never reaches the tray. The reason might be:
 
 These are hypotheses, not diagnoses. Several components can contribute to one failure.
 
-## Today's practice
+## Practice
 
 Draw this stack for your mission. For every arrow, write a message type, a timestamp requirement, and what happens when updates stop. Mark which signals are measured, estimated, requested, or merely reported by software.
 

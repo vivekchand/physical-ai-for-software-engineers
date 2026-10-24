@@ -31,7 +31,7 @@ Work with the manufacturer or responsible integrator on one bounded, supervised 
 
 The guide teaches concepts and simulation exercises; it does not certify a deployment or provide a complete safety-engineering process.
 
-## Today's practice
+## Practice
 
 Write a deployment budget with a measured or explicitly unknown value for each stage. On a GPU host, profile a supported inference example using its documented tools. Save model revision, precision, input shape, hardware, warm-up method, and latency distribution.
 
