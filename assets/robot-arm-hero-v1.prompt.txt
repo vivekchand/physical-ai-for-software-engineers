@@ -1,0 +1,13 @@
+Generated with the built-in OpenAI image generation tool on 25 October 2026.
+Website derivatives: robot-arm-hero-v1.jpg (1200 x 1000) and robot-arm-hero-v1-small.jpg (600 x 500).
+
+Use case: product-mockup
+Asset type: website hero image for an open educational guide, Physical AI for Software Engineers.
+Primary request: Create a polished photorealistic studio concept image of a single tabletop robot arm performing pick-and-place. Replace a flat schematic with a tangible, beautifully lit robotics scene.
+Scene/backdrop: seamless deep navy blue studio background and a matte navy tabletop, restrained technical editorial aesthetic. No scenery or people.
+Subject: one mechanically credible white six-axis collaborative robot arm with dark graphite joints, firmly bolted to a small base on the tabletop. Its connected articulated links curve toward a blue open-top rectangular tray. A parallel two-finger black gripper visibly pinches the opposite sides of one small red cube, holding it just above the interior of the tray. The tray is empty apart from this action; clearly visible rim and interior. Robot, gripper, cube and tray must be legible at small display sizes.
+Style/medium: high-quality physically based product visualization with convincing metal, white polymer, rubber and painted tray materials, realistic joints and consistent perspective. This is a conceptual render, not a specific manufacturer or product.
+Composition/framing: near-square landscape 6:5 composition, three-quarter view from slightly above tabletop. Complete robot and base in frame, arm on left and center, tray on lower right. Generous breathing room at all edges. Main subject fills about 80 percent of image. Distinct silhouette, gripper-cube contact unobstructed. Physically plausible proportions.
+Lighting/mood: soft directional studio key light, gentle cool rim light, realistic contact shadows, calm premium engineering book-cover aesthetic.
+Color palette: deep navy, warm white arm, graphite joints, cobalt blue tray, single coral red cube.
+Constraints: image only. No words, typography, labels, diagrams, arrows, grids, logos, watermarks, screens, duplicate arms, humanoids or extra objects. No floating robot parts. The robot is holding the cube; cube must touch both gripping fingers. Opaque background.

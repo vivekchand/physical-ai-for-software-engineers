@@ -85,6 +85,10 @@ The practical extensions are [robot learning](robot-learning.md), [cloud Isaac s
 
 Vivek Chand started this guide from the perspective of a software engineer entering physical AI while building ClawMetry. Initial drafting and site implementation used AI assistance. Technical corrections and independently reproduced workflows are welcome. The primary sources remain authoritative for their own systems.
 
+## Website imagery
+
+The homepage robot image was generated with OpenAI image generation as a concept illustration of the arm, red cube, and tray learning project. It is not a photograph of a purchased robot or evidence of a completed simulation or hardware run. The image contains no manufacturer branding.
+
 ## Licensing and attribution
 
 Original text in this repository is **CC BY 4.0**. Original site code and included examples are **MIT**. Attribution: “Physical AI for Software Engineers, Vivek Chand and contributors,” with a link to this guide, its license, and a description of your changes where applicable.
