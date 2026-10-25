@@ -74,4 +74,6 @@ A visible mesh is not automatically a collider or a dynamic rigid body. A render
 
 ## Your session artifact
 
+Before scaling the scene, follow the [Isaac Sim workshop](isaac-foundations.md) to verify the renderer's active device, preserve the resolved software artifact, inspect tray colliders, and separate simulation time from wall time. A small scene that starts on one instance is not a performance or compatibility guarantee for a larger sensor workload.
+
 Save `cloud-session.md`: goal, provider/configuration, environment versions, start/stop times, estimated and actual charges, execution evidence, exported files, and any remaining resources. A local alternative is to prepare this plan and run the portable labs. Label remote execution as pending until it happens.

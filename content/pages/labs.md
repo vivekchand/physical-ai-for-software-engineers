@@ -1,4 +1,4 @@
-## Run five small experiments anywhere
+## Run six small experiments anywhere
 
 Clone the repository first using the Setup page. These examples require Python 3.10+ and no third-party packages. They are simplified educational models and synthetic events, not hardware drivers.
 
@@ -77,6 +77,17 @@ This reads 12 invented trial labels and computes results by policy, condition, a
 The candidate has 3/3 verified nominal placements, but one needs help. In the shifted-tray condition it has 1/3 verified placements and an unconfirmed outcome. Explain why one impressive headline is insufficient. Read the [evaluation guide](evaluation.md) for the full expected counts, fixture-editing exercise, and sim-to-real test matrix.
 
 This is a report-analysis lab. It does not execute a policy or establish measured robot performance. The fixture explicitly labels every trial as synthetic.
+
+## Lab 6: depth conventions and mismatched clocks
+
+```bash
+python3 examples/sensor_contracts.py
+python3 examples/sensor_contracts.py --scenario reset
+```
+
+The normal fixture reconstructs the same point from compatible axial-depth and ray-range measurements. Misreading range as axial depth yields a 0.25 m error. Its invented timing trace shows the difference between source-time velocity, wall-time velocity, sensor rate, and physics rate.
+
+The reset command deliberately fails with an explanation: a source clock went backward, so the trace needs a new episode. Predict the values and the error before running it. The [Isaac Sim workshop](isaac-foundations.md#8-run-the-laptop-contract-lab) explains the equations and the separate GPU experiments. This is arithmetic on synthetic measurements, not an executed camera or physics simulation.
 
 ## Keep your results
 

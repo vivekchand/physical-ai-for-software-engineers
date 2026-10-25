@@ -34,6 +34,12 @@ The included joint observer prints local JSONL with joint names, reported positi
 
 If nothing appears, check whether simulation is playing and the bridge started. Then inspect ROS domain, middleware, discovery/network settings, topic names, and QoS. Restart components deliberately after changing middleware settings. Keep a record of which adjustment changed the result.
 
+## Prove the clocks agree with your interpretation
+
+Choose one simulation-time interval and measure the corresponding monotonic wall interval. Report RTF separately from received joint-state or camera rates. Slowing a publisher should not accidentally slow the owner of physics stepping. A consumer using simulation timestamps can estimate the correct simulated motion even when the scene runs slower than wall time.
+
+Record which loop or timeline owns stepping, which clock stamps each stream, and what pause/reset does. Use the [workshop's time experiment](../pages/isaac-foundations.md#7-measure-simulation-time-and-wall-time-separately) before interpreting a slow RViz display as a controller problem.
+
 ## Practice
 
 Record a short state trace. Pause the simulator and verify the source clock and samples behave as expected. Disconnect your observer and confirm that the simulator continues under its own control. Save the graph, message type, clock domain, and the observer's limits.

@@ -4,6 +4,12 @@ Our main task is an arm moving a cube into a tray. A feasible grasp configuratio
 
 Start with the official [Franka pick-and-place example](https://docs.isaacsim.omniverse.nvidia.com/latest/examples/manipulation_franka_pick_place.html) for your installed Isaac Sim release. Use its supported scene, controller, and assets before substituting a learned policy or another arm.
 
+## Inspect what physics actually sees
+
+Before blaming the grasp controller, display the cube, gripper, and tray colliders. A single convex hull around a hollow tray can block an otherwise valid placement. In a separate diagnostic scene, use a simple floor-and-walls tray and drop the cube into it without the arm. Save the resting pose and collision debug view.
+
+Keep that contact test separate from the task result. Adding more accurate contact geometry does not establish stable grasping. The [scene-building workshop](../pages/isaac-foundations.md) adds mass/inertia, a one-joint fixture, sensor checks, and a baseline-preserving path back to the supported arm workflow.
+
 ## Inspect the phases
 
 1. Establish the arm-base, end-effector, camera, cube, and target frames.

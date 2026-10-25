@@ -21,6 +21,7 @@ python3 examples/estimate.py
 python3 examples/mission.py --scenario delayed
 python3 examples/pick_place.py --scenario normal
 python3 examples/evaluate.py
+python3 examples/sensor_contracts.py
 ```
 
 On Windows, use `py -3` in place of `python3` if that is your Python launcher. These examples use only the Python standard library. They write to stdout unless you explicitly request an output file.

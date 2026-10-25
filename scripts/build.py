@@ -22,6 +22,7 @@ FIELD_NOTES = [
     ("models", "Meet the robot models", "Dream-1, VLAs, world-action models, and the interface that connects a model to your arm."),
     ("robot-learning", "How robots learn a task", "Choose a learning method, build a dataset, and connect model outputs to a controller."),
     ("cloud-lab", "Run your first cloud Isaac lab", "Use a remote GPU from your laptop, verify one experiment, and bring the evidence home."),
+    ("isaac-foundations", "Build and debug an Isaac Sim scene", "Verify the GPU, understand USD and contacts, and measure what your sensors and clocks mean."),
     ("evaluation", "Evaluate a pick-and-place robot", "Compare outcomes, interventions, and held-out conditions before claiming improvement."),
     ("applications", "Plan a useful robot application", "Turn the arm exercise into a bounded pilot with measurable work, quality, and costs."),
     ("nvidia", "The NVIDIA robotics map", "A source-linked map of what each tool is for, and what to install first."),
@@ -98,7 +99,7 @@ def main():
                 nav.append(f'<a{cls} data-day-link="{item["day"]}" href="{base}/days/{item["slug"]}/"><span class="day-num">{item["day"]:02}</span><span>{html.escape(item["title"])}</span><span class="nav-check" aria-hidden="true"></span></a>')
         nav.append('<p class="nav-group">Field notes</p>')
         for slug, note_title in [("manipulation", "Pick-and-place lab"), ("hardware", "Buy your first arm"), ("models", "VLAs & Dream Labs"), ("nvidia", "NVIDIA map"),
-                                 ("robot-learning", "Robot learning"), ("cloud-lab", "Cloud Isaac lab"), ("evaluation", "Evaluation & sim-to-real"), ("applications", "Applications & costs")]:
+                                 ("isaac-foundations", "Isaac Sim workshop"), ("robot-learning", "Robot learning"), ("cloud-lab", "Cloud Isaac lab"), ("evaluation", "Evaluation & sim-to-real"), ("applications", "Applications & costs")]:
             cls = ' class="active" aria-current="page"' if path == f"{slug}/index.html" else ""
             nav.append(f'<a{cls} href="{base}/{slug}/">{html.escape(note_title)}</a>')
         canonical = f"{ORIGIN}{base}/" + (path[:-10] if path.endswith("index.html") else path)
@@ -141,7 +142,7 @@ def main():
         source = f"content/pages/{slug}.md"
         text = with_hardware_tables((ROOT/source).read_text())
         body, toc = render_md(text, base)
-        content = f'<div class="lesson-header"><p class="eyebrow">FIELD NOTES / {slug.upper()}</p><h1>{title}</h1><p class="lesson-deck">{deck}</p></div><article class="prose">{body}</article>'
+        content = f'<div class="lesson-header"><p class="eyebrow">FIELD NOTES / {slug.upper()}</p><h1>{title}</h1><p class="lesson-deck">{deck}</p></div><details class="reader-toc"><summary>In this guide</summary>{toc}</details><article class="prose">{body}</article>'
         page(f"{slug}/index.html", title, deck, content, toc=toc, source=source)
         search.append({"title":title,"day":None,"url":f"{base}/{slug}/", "text":re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))})
     chapters, manuscript = [], ["# Physical AI for Software Engineers\n\nA free, open-source, self-paced guide to robotics, ROS 2, and NVIDIA Isaac. Learn by building a pick-and-place robot.\n\nText: CC BY 4.0, Vivek Chand and contributors. Code: MIT. External sources retain their own licenses.\n\nDocumentation reviewed 23 October 2026. GPU reference exercises are not independently executed by this project's CPU tests.\n"]
@@ -156,7 +157,7 @@ def main():
         contents.append(f'<li><a href="#day-{item["day"]}">{item["day"]:02}. {html.escape(item["title"])}</a></li>')
         manuscript.append(f'\n\n# Lesson {item["day"]:02}: {item["title"]}\n\n{resolve_links(raw, ORIGIN + base)}')
     for slug, title in [("manipulation", "Pick-and-place field note"), ("models", "Robot models and Dream Labs"), ("hardware", "Hardware buying guide"),
-                        ("robot-learning", "Robot learning and datasets"), ("cloud-lab", "Cloud Isaac lab"),
+                        ("isaac-foundations", "Isaac Sim scene-building workshop"), ("robot-learning", "Robot learning and datasets"), ("cloud-lab", "Cloud Isaac lab"),
                         ("evaluation", "Evaluation and sim-to-real"), ("applications", "Applications and pilot economics")]:
         raw = with_hardware_tables((ROOT/f"content/pages/{slug}.md").read_text())
         body, _ = render_md(raw, base)
@@ -166,7 +167,7 @@ def main():
         chapters.append(f'<section class="book-chapter" id="appendix-{slug}"><p class="eyebrow">FIELD NOTE</p><h2>{title}</h2>{body}</section>')
         contents.append(f'<li><a href="#appendix-{slug}">{title}</a></li>')
         manuscript.append(f'\n\n# Field note: {title}\n\n{resolve_links(raw, ORIGIN + base)}')
-    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 lessons and seven practical field notes, from choosing an arm to learning, cloud setup, evaluation, and application costs. Work at your own pace. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
+    book = f'<div class="lesson-header"><p class="eyebrow">THE READING EDITION</p><h1>Physical AI for<br>Software Engineers</h1><p class="lesson-deck">All 21 lessons and eight practical field notes, from choosing an arm and building a scene to learning, cloud setup, evaluation, and application costs. Work at your own pace. Use your browser’s Print command to save a personal PDF.</p><a class="text-link" href="{base}/book.md" download>Download the Markdown manuscript ↓</a></div><article class="prose"><h2>Contents</h2><ol class="book-contents">{"".join(contents)}</ol>{"".join(chapters)}</article>'
     page("book/index.html", "The reading edition", "All 21 original lessons in a printable reading edition.", book)
     (out/"book.md").write_text("\n".join(manuscript))
     page("404.html", "Page not found", "Find your way back to the field guide.", f'<div class="lesson-header"><p class="eyebrow">404 / OFF THE MAP</p><h1>Let’s find your way back.</h1><p class="lesson-deck">This page has moved or does not exist.</p><a class="button primary" href="{base}/">Open the learning path →</a></div>')

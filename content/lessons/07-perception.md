@@ -12,6 +12,12 @@ Stereo estimates depth from corresponding observations across cameras with known
 
 Classical perception includes filtering, feature extraction, matching, and geometric alignment. Learned architectures extract representations from data. Detection identifies object instances, while segmentation assigns labels or instances to image regions. A useful system may combine both classical and learned methods.
 
+## Depth has a convention
+
+For a pinhole camera, depth along the optical axis and distance along a pixel ray agree at the centre but differ off-axis. With `ray = [(u-cx)/fx, (v-cy)/fy, 1]`, axial depth reconstructs `Z*ray`; ray range reconstructs `range*ray/length(ray)`. Verify units, intrinsics, distortion handling, and the camera-frame convention before converting to the arm frame.
+
+Run `python3 examples/sensor_contracts.py` to see matching measurements reconstruct the same point, and a convention mismatch produce a plausible wrong point. This is mathematical fixture data. The [workshop](../pages/isaac-foundations.md#6-know-what-each-camera-value-means) links the actual annotator and camera-API contracts for the GPU route.
+
 ## Confidence is not physical truth
 
 Our detector may label the red cube with a high score while its estimated pose is unsuitable for grasping. Classification score, geometric uncertainty, grasp quality, and task success are different quantities. A single confidence badge should not collapse them.

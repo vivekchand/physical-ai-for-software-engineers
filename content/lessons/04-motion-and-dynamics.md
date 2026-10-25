@@ -35,6 +35,12 @@ The same endpoint trajectory can produce different joint torques when the cube i
 
 The optional mobile comparison is a unicycle model. It is useful for understanding nonholonomic motion, but the arm's joint/configuration model is our main example.
 
+## Give the model a believable body
+
+In a simulator, inspect the collision geometry separately from the visible mesh. A gripper's opening or a tray's cavity can disappear under a convex approximation. Check mass, centre of mass, inertia, joint frames/limits, and the drive's units and limits before tuning control gains.
+
+For a uniform cube of mass `m` and side `s`, each principal inertia is `m*s*s/6`, in kg·m². This is a sanity check for that ideal body, not an inertia model for an assembled arm. Use the [workshop's contact and one-joint exercises](../pages/isaac-foundations.md#4-make-the-cube-land-inside-the-tray) before substituting your own robot asset.
+
 ## Practice
 
 Compute the endpoint at zero joint angles, solve IK for the pickup and tray positions, and compare by applying forward kinematics again. Then try a target farther than the sum of the link lengths. Save a table of targets, joint solutions, and rejection reasons. Write down three effects the toy does not simulate.
