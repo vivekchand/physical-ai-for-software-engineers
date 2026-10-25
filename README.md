@@ -14,6 +14,15 @@ ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capsto
 **[Robot models](https://vivekchand.github.io/physical-ai-for-software-engineers/models/)** ·
 **[Reading edition](https://vivekchand.github.io/physical-ai-for-software-engineers/book/)**
 
+## Email updates
+
+[Physical AI Field Notes](https://buttondown.com/physicalaifieldnotes), by Vivek Chand,
+shares new labs, guide updates, and selected robotics releases twice a month.
+Subscribing is optional; the guide stays free to read. The homepage and lessons use
+Buttondown's standard HTML form with email confirmation, without a backend or remote
+JavaScript. Only the public subscription endpoint is in the site; no API key is
+needed to build or run it. See [newsletter privacy](content/pages/privacy.md).
+
 ## What you can finish with
 
 - A working mental model of perception, estimation, planning, control, and learning.
