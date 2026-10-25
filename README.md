@@ -17,7 +17,7 @@ ROS 2 and NVIDIA Isaac workflows, small runnable labs, and a reproducible capsto
 ## What you can finish with
 
 - A working mental model of perception, estimation, planning, control, and learning.
-- Five portable experiments covering feedback, noisy measurements, mission evidence, pick-and-place kinematics, and evaluation reporting.
+- Six portable experiments covering feedback, noisy measurements, mission evidence, pick-and-place kinematics, evaluation reporting, and sensor/clock contracts.
 - A red-cube-to-tray arm task throughout the core, with a bimanual extension.
 - A source-linked introduction to Dream-1, VLAs/WAMs, and dated hardware buying options.
 - Source-reviewed ROS 2, Isaac Sim, and Isaac Lab reference exercises.
@@ -81,6 +81,7 @@ python3 examples/estimate.py --seed 7
 python3 examples/mission.py --scenario delayed
 python3 examples/pick_place.py --scenario normal
 python3 examples/evaluate.py
+python3 examples/sensor_contracts.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -98,14 +99,15 @@ uploads, or remote robot actions are required to read this guide or run its toy 
 
 | Topic | Use alongside | Practical artifact |
 |---|---|---|
+| [Isaac Sim scene-building workshop](content/pages/isaac-foundations.md) | Lessons 3–7 and 12–14 | GPU evidence, scene dependencies, colliders, sensor and clock contracts |
 | [Robot learning and datasets](content/pages/robot-learning.md) | Lessons 2, 16–17 | Learning plan and observation/action contract |
 | [Cloud Isaac lab with Brev](content/pages/cloud-lab.md) | Lessons 12 and 16 | Host manifest, small experiment, exported results |
 | [Evaluation and sim-to-real](content/pages/evaluation.md) | Lessons 18–21 | Condition-level report with interventions and unknowns |
 | [Applications and costs](content/pages/applications.md) | Lessons 1 and 21 | Bounded pilot decision and comparable cost calculation |
 
 These field notes are included in search and the printable/Markdown reading edition.
-The [sources page](content/pages/resources.md) credits the additional Udemy course
-reviewed during this refinement and links the primary technical references.
+The [sources page](content/pages/resources.md) credits the additional Udemy courses
+reviewed during refinement and links the primary technical references.
 
 ## NVIDIA and ROS version policy
 

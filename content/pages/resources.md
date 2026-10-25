@@ -61,7 +61,18 @@ The [model field note](models.md) explains access and compatibility distinctions
 
 The practical extensions are [robot learning](robot-learning.md), [cloud Isaac setup](cloud-lab.md), [evaluation and sim-to-real](evaluation.md), and [application economics](applications.md). Use the vendor's installed-version documentation for executable instructions; claims about generalization or business value need task-specific measurements.
 
-### Primary references for these extensions
+### Simulator course perspective
+
+[NVIDIA Isaac Sim from Scratch: Build a Robot, Prove the GPU, Frank Robotics Lab on Udemy](https://www.udemy.com/course/nvidia-isaac-sim-from-scratch-build-a-robot-prove-the-gpu/) supplied a further topic review on 25 October 2026: the full 96-lecture outline and 18 selected lecture transcripts covering scene composition, physics, sensors, timing, diagnostics, and evaluation. The [Isaac Sim workshop](isaac-foundations.md) adapts the relevant skills to this guide's arm task, with original exercises and a new mathematical fixture. The course's transcripts, assets, code, and measured performance results are not redistributed. Product requirements and API details are checked against primary documentation.
+
+### Simulator-building references
+
+- [OpenUSD transforms](https://openusd.org/release/api/class_usd_geom_xformable.html) and [stage units](https://openusd.org/release/api/group___usd_geom_linear_units__group.html).
+- [Kit GPU diagnostics](https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/linux_troubleshooting.html) and [Isaac Sim physics fundamentals](https://docs.isaacsim.omniverse.nvidia.com/latest/physics/simulation_fundamentals.html).
+- [Isaac Sim camera sensors](https://docs.isaacsim.omniverse.nvidia.com/latest/sensors/isaacsim_sensors_camera.html), [ROS 2 clock](https://docs.isaacsim.omniverse.nvidia.com/latest/ros2_tutorials/tutorial_series/tutorial_ros2_clock.html), and [RTF](https://docs.isaacsim.omniverse.nvidia.com/latest/ros2_tutorials/tutorial_series/tutorial_ros2_rtf.html).
+- [Replicator annotator API](https://docs.omniverse.nvidia.com/kit/docs/omni_replicator/latest/source/extensions/omni.replicator.core/docs/API.html) and [Docker image digests](https://docs.docker.com/reference/cli/docker/image/pull/).
+
+### Learning and cloud references
 
 - [Brev Launchables](https://docs.nvidia.com/brev/concepts/launchables), [instance lifecycle](https://docs.nvidia.com/brev/cli/instance-management), and [Isaac Sim's Brev deployment](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_advanced_cloud_setup_brev.html).
 - [Isaac Lab 3.0 cloud deployment](https://isaac-sim.github.io/IsaacLab/v3.0.0/source/features/cloud_deployment.html) and [imitation-learning workflows](https://isaac-sim.github.io/IsaacLab/v3.0.0/source/features/imitation-learning/index.html).

@@ -20,6 +20,12 @@ Inspect a few samples manually. Are labels aligned? Is depth in the expected uni
 
 If you cannot run GPU generation, design the experiment using an explicit scene specification and a failure taxonomy. Label it a design artifact rather than a generated dataset.
 
+## Audit the annotation contract
+
+Before a large generation job, inspect a small RGB/annotation set. Map semantic IDs to the intended classes, verify frame alignment, and distinguish visible-pixel boxes from full-object extent. An annotation for the floor is not a mislabeled cube. Compare channels only when their inclusion and occlusion rules match.
+
+Corrupting synthetic images with blur, noise, or exposure changes is a useful stress test. It does not prove a numeric lower bound on real-world error or establish sim-to-real transfer. Compare a meaningful baseline, then evaluate on independent real observations for a real-world claim. The [workshop](../pages/isaac-foundations.md#9-inspect-labels-before-generating-a-large-dataset) describes the first inspection exercise.
+
 ## Practice
 
 ### Add a result you can compute on a laptop

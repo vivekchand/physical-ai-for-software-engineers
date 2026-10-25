@@ -74,6 +74,8 @@ World-model video can suggest a scenario or augment appearance. Verify task labe
 
 ## Transfer in stages
 
+For GPU experiments, the [scene-building workshop](isaac-foundations.md) adds diagnostics for GPU selection, collision geometry, camera depth, and clock interpretation. Exposure/noise/blur tests on synthetic images measure robustness to those selected changes. They do not define a guaranteed mathematical lower bound on real-world error.
+
 Record an evidence ladder in your report: mathematical fixture → supported simulator trial → held-out simulation conditions → bounded, supervised hardware trials with the responsible operator. At each step, name the assumptions the previous step could not test.
 
 Use [GR00T's open-loop and closed-loop evaluation examples](https://github.com/NVIDIA/Isaac-GR00T#evaluation) and [Isaac Lab's sim-to-real resources](https://isaac-sim.github.io/IsaacLab/v3.0.0/source/features/imitation-learning/index.html) for project-specific workflows. Their benchmark scores describe their tested conditions and do not replace your evaluation.

@@ -10,6 +10,12 @@ Run `nvidia-smi` on the proposed GPU host. Record GPU model, VRAM, driver, OS, a
 
 Training workloads and scene complexity can require substantially more resources. Verify the separate requirements for Isaac Lab, GR00T, and any selected backend. Their GPU requirements are not identical.
 
+## Verify the renderer as well as the driver
+
+Keep three observations separate: the host detects the GPU, Vulkan can enumerate the required device, and the running Kit application marks the intended device active. `nvidia-smi` answers the first question; it does not establish the third. Inspect the application's GPU table and renderer log, including inside a container if that is your installation route.
+
+Record the resolved container digest or workstation artifact alongside the release, plus scene dependencies. If a process exits with code 137, investigate a forced kill using memory/container/system evidence; the number alone does not diagnose GPU failure. The [Isaac Sim workshop](../pages/isaac-foundations.md) provides the evidence checklist and a staged build from an empty scene.
+
 ## First successful run
 
 Using a Mac or a laptop without a suitable GPU? Follow the [cloud Isaac lab](../pages/cloud-lab.md) for a Brev-oriented session plan, host checks, streaming diagnostics, and resource shutdown. It also includes a cube-and-floor physics check before adding the arm. The operating system and GPU requirements apply to the remote host.

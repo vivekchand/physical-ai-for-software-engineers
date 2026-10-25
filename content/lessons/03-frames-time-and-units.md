@@ -18,6 +18,12 @@ The transform must correspond to the measurement time. Using a current wrist-cam
 
 For an arm, inspect the base, links, end-effector, camera, object, and target frames. Names depend on the robot. For the optional mobile example, ROS conventions distinguish `map`, `odom`, and `base_link`: local odometry can drift while localization corrects its relationship to the global map. Follow the actual frame tree.
 
+## Check the imported scene's units too
+
+A correct camera-to-arm transform cannot repair a cube authored at the wrong scale. In USD, inspect the stage's `metersPerUnit`, `upAxis`, parent transforms, and evaluated world dimensions. A referenced asset can need an explicit correction when its authored units differ. A change to unit metadata alone does not rescale existing geometry.
+
+Save the asset revision and the correction in your scene rather than silently editing a shared vendor asset. The [Isaac Sim workshop](../pages/isaac-foundations.md#3-read-the-scene-as-a-composed-document) develops prim paths, layers, references, and transform ordering.
+
 ## Clocks are another coordinate system
 
 Use simulated time consistently within a simulated graph. Keep wall-clock receipt time separately for operations. Use a monotonic clock for local elapsed durations. Never subtract timestamps from different clock domains without an established relationship.

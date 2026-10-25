@@ -19,6 +19,12 @@ ros2 topic echo /clock --once
 
 Topic and frame names vary. Replace them using the graph you discovered. The arm may use different base/end-effector frame names; discover them before running the command. A mobile graph may additionally provide `map` and `odom`. The CLI rate is an observed receiving rate, not a complete proof of publisher performance.
 
+## Separate three rates
+
+Physics stepping, sensor production, and message receipt can have different rates. A velocity estimate needs the interval between the source samples, rather than the physics timestep or a typed-in ROS rate.
+
+Real-time factor is elapsed simulation time divided by elapsed wall time. At RTF 0.5, 0.25 m per simulated second appears as 0.125 m per wall second. This does not by itself mean the simulated dynamics or ROS timestamps are wrong. Measure which clock the complaint refers to. The [laptop contract lab](../pages/isaac-foundations.md#8-run-the-laptop-contract-lab) also shows how a slower sensor stream can yield a fourfold velocity error when divided by the physics timestep.
+
 ## Record an experiment
 
 ```bash

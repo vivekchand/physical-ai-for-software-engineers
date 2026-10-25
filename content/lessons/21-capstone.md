@@ -29,6 +29,7 @@ Optional extension: use the [applications guide](../pages/applications.md) to wr
 | `README.md` | Task, route chosen, prerequisites, exact reproduction commands |
 | `environment.md` | OS, hardware, tool versions, commits, backend, assets, seeds |
 | `architecture.md` | Nodes/components, frames, topics, control ownership, timing assumptions |
+| `scene.md` | If using Isaac: units, dependency revisions, colliders, physics settings, active GPU, sensor and clock contracts |
 | `runs/` | Raw traces or bag references, run IDs, configurations, results |
 | `report.md` | Success criteria, failure cases, evidence, unknowns, and limitations |
 | `learning-plan.md` | If learning is used: method, dataset revision/splits, observation/action contract |
