@@ -29,7 +29,8 @@ FIELD_NOTES = [
     ("resources", "Go deeper, deliberately", "The original references behind the guide, organized by the question you are trying to answer."),
     ("glossary", "A working vocabulary", "Plain-language definitions you can use in an engineering conversation."),
     ("roadmap", "Keep learning", "Turn a first project into deeper engineering competence."),
-    ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure.")
+    ("labs", "Small experiments. Real intuition.", "Run the portable labs before adding simulation infrastructure."),
+    ("privacy", "Newsletter privacy", "What happens to your email when you subscribe to Physical AI Field Notes.")
 ]
 
 
@@ -110,7 +111,8 @@ def main():
         dest.write_text(result)
         urls.append(canonical)
 
-    home = (ROOT / "templates/home.html").read_text().replace("{{base}}", base)
+    newsletter = (ROOT / "templates/newsletter.html").read_text().replace("{{base}}", base)
+    home = (ROOT / "templates/home.html").read_text().replace("{{base}}", base).replace("{{newsletter}}", newsletter)
     weeks = []
     for week, title, subtitle in [(1, "Understand the robot", "Build intuition before adding tools."), (2, "Build the system", "ROS 2, NVIDIA Isaac, and your first integration."), (3, "Learn, deploy, observe", "Policies, data, operational evidence, and a capstone.")]:
         rows = []
@@ -133,7 +135,7 @@ def main():
         next_link = f'<a href="{base}/days/{following["slug"]}/"><small>NEXT →</small>{html.escape(following["title"])}</a>' if following else f'<a href="{base}/roadmap/"><small>KEEP GOING →</small>Explore further</a>'
         content = f'''<div class="lesson-header"><a class="breadcrumb" href="{base}/#learning-path">The learning path</a><p class="eyebrow">LESSON {item['day']:02} / PART {item['week']:02} / {html.escape(item['tag'].upper())}</p><h1>{html.escape(item['title'])}</h1><p class="lesson-deck">{html.escape(item['summary'])}</p><div class="lesson-meta"><span>{max(2, math.ceil(words/180))} min read</span><span>Self-paced practice</span><span>Original, open material</span></div></div>
         <details class="reader-toc"><summary>In this lesson</summary>{toc}</details><div class="reader-layout"><article class="prose" id="lesson-content">{body}
-        <div class="completion-box"><div><strong>Can you explain it without the page?</strong><p>Try the checkpoint first. Your progress stays in this browser.</p></div><button class="button primary" data-complete="{item['day']}" aria-pressed="false">Mark lesson complete</button></div><p class="edit-link"><a href="{REPO}/edit/main/{source}">Improve this lesson on GitHub ↗</a></p><nav class="chapter-nav" aria-label="Previous and next lesson">{prev_link}{next_link}</nav></article></div>'''
+        <div class="completion-box"><div><strong>Can you explain it without the page?</strong><p>Try the checkpoint first. Your progress stays in this browser.</p></div><button class="button primary" data-complete="{item['day']}" aria-pressed="false">Mark lesson complete</button></div><p class="edit-link"><a href="{REPO}/edit/main/{source}">Improve this lesson on GitHub ↗</a></p><nav class="chapter-nav" aria-label="Previous and next lesson">{prev_link}{next_link}</nav></article></div>{newsletter}'''
         page(f"days/{item['slug']}/index.html", item["title"] + " · Lesson " + str(item["day"]), item["summary"], content, item["slug"], toc, str(item["day"]), source)
         plain = html.unescape(re.sub(r"<[^>]+>", " ", body))
         search.append({"title":item["title"], "day":item["day"], "url":f"{base}/days/{item['slug']}/", "text":re.sub(r"\s+", " ", plain)})
